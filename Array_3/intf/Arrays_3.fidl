@@ -1,0 +1,43 @@
+package com.harman.voice
+
+interface Arrays_3 {
+	version {
+		major 0
+		minor 1
+	}
+	enumeration POIS_NAME {
+		HOSPITAIL = 0
+		INSTITUATUIONS = 1
+		TEMPLES = 2
+	}
+
+	struct latlong {
+		Double lat
+		Double longitude
+	}
+
+	method route {
+		in {
+			latlong[ ] latLong
+		}
+		out {
+			latlong [ ] path
+		}
+	}
+	method getShortestRoute {
+		in {
+			latlong latLongStructure
+		}
+		out {
+			latlong [] path
+		}
+	}
+	method getPOI {
+		in {
+			latlong latLongStruct
+		}
+		out {
+			POIS_NAME poisName
+		}
+	}
+}

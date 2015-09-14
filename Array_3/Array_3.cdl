@@ -1,0 +1,30 @@
+import fidl "intf/Arrays_3.fidl"
+
+package Arrays_1{
+	generator true
+
+	component dbusProviderComp	{
+		language cpp
+		buildType CMake
+		rpc dbus
+		provides interface com.harman.voice.Arrays_3 as dbusProviderCompInstance
+	}
+	component dbusConsumerComp	{
+		language cpp
+		buildType CMake
+		rpc dbus
+		consumes interface com.harman.voice.Arrays_3 instance dbusProviderComp :: dbusProviderCompInstance as proxyInst
+	}
+	component tesseractProviderComp	{
+	language cpp
+		buildType CMake
+		rpc tesseract
+		provides interface com.harman.voice.Arrays_3 as tesseractProviderCompInstance
+	}
+	component tesseractConsumerComp	{
+		language cpp
+		buildType CMake
+		rpc tesseract
+		consumes interface com.harman.voice.Arrays_3 instance tesseractProviderComp :: tesseractProviderCompInstance as proxyInst 
+	}
+}
