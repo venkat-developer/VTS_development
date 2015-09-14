@@ -16,11 +16,10 @@
       <div class="large-1 columns">
         <br>
         <h1>
-          <img src="img/logo.jpg" height="30" width="120" />
+          <!-- <img src="img/logo.jpg" height="30" width="120" /> -->
         </h1>
       </div>
-      <h1 style="font-family: High Tower Text; font-size: 90">Bhopal
-        Bus Rapid Transport System
+      <h1 style="font-family: High Tower Text; font-size: 90">VEHICLE TRACKING SYSTEM
       </h1>
     </div>
   </body>
