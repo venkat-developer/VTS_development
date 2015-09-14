@@ -13,6 +13,7 @@ public class UserEntity implements IEntity<UserEntity>{
 	
 	public enum UserRole {
 		ADMIN_USER(0),NORMAL_USER(1);
+		//ADMIN(0),OWNER(1),OPERATOR(2),PASS_KEY_USER(3);
 		
 		private int val;
 		

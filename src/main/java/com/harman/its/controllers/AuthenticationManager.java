@@ -26,7 +26,7 @@ public class AuthenticationManager {
 			if(accessList.size()!=0){
 				for(int i=0;i<accessList.size();i++){
 					String beanAuth = accessList.get(i);
-					String loggedInUserRole = UserRole.getUserRole(user.getUserRole()).toString();
+					String loggedInUserRole = UserRole.getUserRole(user.getRole().getValue()).toString();
 					if(beanAuth.equalsIgnoreCase(loggedInUserRole.toString())){
 						isvalidUser=true;
 						break;

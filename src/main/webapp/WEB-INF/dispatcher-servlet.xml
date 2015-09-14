@@ -23,9 +23,52 @@
 			<value>
 				/login.* loginController
 				/home.* homeController
+				/passkey.* passkeyController
 				/main.* mainController
-				<!-- /wifi.* wifiController -->
-				<!-- /busdetailshome.* busDeatilsController -->
+				/wifi.* wifiController
+				/busdetailshome.* busDeatilsController
+				/farechartupload.* fareChartUploadController
+				/terminaldeviceusers.* terminalDeviceUsersController
+				/busStopshome.* busStopshomeController
+				/conductorhome.* conductorController
+				/Configfilehome.* ConfigfilehomeController
+				/depothome.* depotController
+				/divisionhome.* divisionController
+				/driverhome.* driverController
+				/routehome.* routeController
+				/routeschedule.* routeScheduleController
+				/typedetails.* typeDetailsController
+				/healthsync.* healthSyncController
+				/reportsgen.* reportsController
+				/transaction.* transactionController
+				/terminaldevicehome.* terminalController
+				/operator.* operatorController
+				/inputValidate.* inputvalidatorController
+				/outputValidate.* outputValidateController
+				/busInputFileValidator.* busInputFileValidatorController
+				/stopsInputFileValidator.* stopsInputFileValidatorController
+				/conductorInputFileValidator.* conductorInputFileValidatorController
+				/depotInputFileValidator.* depotInputFileValidatorController
+				/divisionInputFileValidator.* divisionInputFileValidatorController
+				/driverInputFileValidator.* driverInputFileValidatorController
+				/routesInputFileValidator.* routesInputFileValidatorController
+				/usersInputFileValidator.* usersInputFileValidatorController
+				/wifiInputFileValidator.* wifiInputFileValidatorController
+				/farechartInputFileValidator.* farechartInputFileValidatorController
+				/typeInputFileValidator.* typeInputFileValidatorController
+				/busOutputFileValidator.* busOutputFileValidatorController
+				/stopsOutputFileValidator.* stopsOutputFileValidatorController
+				/conductorOutputFileValidator.* conductorOutputFileValidatorController
+				/depotOutputFileValidator.* depotOutputFileValidatorController
+				/divisionOutputFileValidator.* divisionOutputFileValidatorController
+				/driverOutputFileValidator.* driverOutputFileValidatorController
+				/routesOutputFileValidator.* routesOutputFileValidatorController
+				/usersOutputFileValidator.* usersOutputFileValidatorController
+				/wifiOutputFileValidator.* wifiOutputFileValidatorController
+				/farechartOutputFileValidator.* farechartOutputFileValidatorController
+				/typeOutputFileValidator.* typeOutputFileValidatorController
+				/alertReport.* alertReportController
+				/update.* reportEditableController
 			</value>
 		</property>
 	</bean>
@@ -62,33 +105,382 @@
 		<property name="formView" value="/HITS-UI/passkey.do" />
 	</bean>
 
-	
+	<bean name="wifiController" class="com.harman.its.controllers.WifiUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
 	<bean name="homeController" class="com.harman.its.controllers.HomeController">
 	</bean>
-	<!-- <bean name="fareChartUploadController" class="com.harman.its.controllers.FareChartUploadController">
+	<bean name="fareChartUploadController" class="com.harman.its.controllers.FareChartUploadController">
 		<property name="access">
 			<list>
 				<value>ADMIN</value>
 			</list>
 		</property>
-	</bean> -->
-	
-<!--	<bean name="reportEditableController" class="com.harman.its.controllers.ReportEditableController">
+	</bean>
+	<bean name="terminalDeviceUsersController" class="com.harman.its.controllers.TerminalDeviceUsersController">
 		<property name="access">
 			<list>
 				<value>ADMIN</value>
 				<value>OWNER</value>
 			</list>
-		</property> 
-	</bean> -->
+		</property>
+	</bean>
+	<bean name="busDeatilsController" class="com.harman.its.controllers.BusDetailsUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+	<bean name="busStopshomeController" class="com.harman.its.controllers.BusStopsUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="conductorController" class="com.harman.its.controllers.ConductorUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="ConfigfilehomeController" class="com.harman.its.controllers.SystemConfigFileUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="depotController" class="com.harman.its.controllers.DepotUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="divisionController" class="com.harman.its.controllers.DivisionUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="driverController" class="com.harman.its.controllers.DriverUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+	<bean name="reportEditableController" class="com.harman.its.controllers.ReportEditableController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="routeController" class="com.harman.its.controllers.RouteUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="routeScheduleController" class="com.harman.its.controllers.RouteScheduleController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="typeDetailsController"
+		class="com.harman.its.controllers.TypeDetailsUploadController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="healthSyncController" class="com.harman.its.controllers.HealthSyncController" >
+	<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="reportsController" class="com.harman.its.controllers.ReportGeneration">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+	<bean name="alertReportController" class="com.harman.its.controllers.AlertReportController" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="inputvalidatorController" class="com.harman.its.controllers.ExcelInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="transactionController"
+		class="com.harman.its.controllers.TransactionReportController">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+				<value>OWNER</value>
+				<value>OPERATOR</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="outputValidateController" class="com.harman.its.controllers.ExcelOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
 
 	
-	<!-- <bean name="reportsController" class="com.harman.its.controllers.ReportGeneration">
+	<bean name="terminalController" class="com.harman.its.controllers.TerminalDeviceUploadController" >
 		<property name="access">
 			<list>
 				<value>ADMIN</value>
-				<value>OWNER</value>
 			</list>
 		</property>
-	</bean> -->
+	</bean>
+	
+	<bean name="operatorController" class="com.harman.its.controllers.OperatorUploadController" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="busOutputFileValidatorController" class="com.harman.its.validation.BusDetailsOutputFileValidator" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="stopsOutputFileValidatorController" class="com.harman.its.validation.BusStopsOutputFileValidator" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+    <bean name="conductorOutputFileValidatorController" class="com.harman.its.validation.ConductorOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+    <bean name="depotOutputFileValidatorController" class="com.harman.its.validation.DepotOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+    <bean name="divisionOutputFileValidatorController" class="com.harman.its.validation.DivisionOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+    <bean name="driverOutputFileValidatorController" class="com.harman.its.validation.DriverOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+    <bean name="farechartOutputFileValidatorController" class="com.harman.its.validation.FarechartOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+     <bean name="routesOutputFileValidatorController" class="com.harman.its.validation.RouteDetailsOutputFileValidator" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+	<bean name="typeOutputFileValidatorController" class="com.harman.its.validation.TypeDetailsOutputFileValidator" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+     <bean name="usersOutputFileValidatorController" class="com.harman.its.validation.UsersOutputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+    
+     <bean name="wifiOutputFileValidatorController" class="com.harman.its.validation.WifiOutputFileValidator" >
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+     
+   	<bean name="busInputFileValidatorController"
+		class="com.harman.its.validation.BusDetailsInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="passkeyController" class="com.harman.its.controllers.PasskeyController" >
+	<property name="access">
+			<list>
+				<value>PASS_KEY_USER</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="stopsInputFileValidatorController" class="com.harman.its.validation.BusStopsInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="conductorInputFileValidatorController" class="com.harman.its.validation.ConductorInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="depotInputFileValidatorController" class="com.harman.its.validation.DepotInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="divisionInputFileValidatorController" class="com.harman.its.validation.DivisionInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="driverInputFileValidatorController" class="com.harman.its.validation.DriverInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="routesInputFileValidatorController"
+		class="com.harman.its.validation.RouteDetailsInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="usersInputFileValidatorController" class="com.harman.its.validation.UsersInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="wifiInputFileValidatorController" class="com.harman.its.validation.WifiInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="farechartInputFileValidatorController" class="com.harman.its.validation.FareChartInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="typeInputFileValidatorController"
+		class="com.harman.its.validation.TypeDetailsInputFileValidator">
+		<property name="access">
+			<list>
+				<value>ADMIN</value>
+			</list>
+		</property>
+	</bean>
 </beans>
