@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+  pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+  <!-- Head part-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HITS-Upload Terminal Device Type Details</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+  </head>
+  <body>
+    <!-- Header Part of the html-->
+    <div id="header"></div>
+    <!-- Body Part of the html-->
+    <br>
+    <div class="row" style="height: 57%; width: 100%">
+      <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+          <section class="main-section">
+            <nav class="tab-bar">
+              <section class="left-small">
+                <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+              </section>
+              <section class="middle tab-bar-section">
+                <h1 class="title">Menu</h1>
+              </section>
+              <div id="lastlogin"></div>
+            </nav>
+            <div id="navbar"></div>
+            <!-- content goes here -->
+            <div class="large-11 columns" style="height: 92.5%">
+              <h1>Health Status</h1>
+              <br>
+              <div class="large-6 push-3 columns">
+                <form action="/HITS-UI/healthsync.do?type=history"
+                  class="typedetails" name="typedetails" method="POST">
+                  <fieldset>
+                    <legend>
+                      <strong>List of Buses</strong><br>
+                      <br>
+                    </legend>
+                    <br>
+                    <br>
+                    <div class="large-9 push-1 small-6 columns">
+                      <select name="route" id="route" required>
+                        <option value="" disabled selected style="display: none;">----
+                          Select the Bus ----
+                        </option>
+                        <option value="Route 1">Bus 1</option>
+                        <option value="Route 2">Bus 2</option>
+                      </select>
+                      <br>
+                    </div>
+                  </fieldset>
+                  <br>
+                  <br>
+                  <br>
+                  <fieldset>
+                    <legend>
+                      <strong>Device Type</strong><br>
+                      <br>
+                    </legend>
+                    <br>
+                    <br>
+                    <div class="large-6 small-6 columns">
+                      <input type="checkbox" name="bv" value="bv">Bus
+                      Validator<br> <input type="checkbox" name="etvm"
+                        value="etvm">ETVM
+                    </div>
+                  </fieldset>
+                  <br>
+                  <br>
+                  <center>
+                    <button type="submit" class="radius button">Proceed</button>
+                  </center>
+                </form>
+              </div>
+            </div>
+          </section>
+          <a class="exit-off-canvas"></a>
+        </div>
+      </div>
+    </div>
+    <!-- Footer part-->
+    <br>
+    <div id="footer"></div>
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="js/foundation/wifi.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"> </script>
+    <script src="js/foundation.js"></script>
+    <script src="js/foundation.orbit.js"></script>
+    <script src="js/brts/main.js"></script>
+    <script src="js/brts/alerts.js"></script>
+  </body>
+</html>
