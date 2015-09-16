@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
 import org.apache.log4j.Logger;
+import org.postgis.PGgeometry;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.harman.its.dao.idao.ILiveVehicleStatusDAO;
@@ -235,36 +237,49 @@ public class LiveVehicleStatusDaoImpl implements ILiveVehicleStatusDAO {
 		return jdbcTemplate.query(sql, new LiveVehicleStatusCacheRowMapper());
 	}*/
 
-	public LiveVehicleStatus getVehicleStatusCount(Long userId) {
+	public List<LiveVehicleStatus> fetchLiveVehicleStatusOfUser(Long userId) {
 		int onlineVehiclesCount = 0;
 		int totalOfflineVehicleCount=0;
 		Connection connection = null;
 		Statement statement = null;
+		List<LiveVehicleStatus> vehicleStatusCountList = new ArrayList<LiveVehicleStatus>();
 		try{
-			String sql = "select (date_part('days',now()-lastupdatedat))>0 as lastupdatedatdiff, (date_part('days',now()-moduleupdatetime))>0 as moduleupdatetimediff  from" +
-					" livevehiclestatus where tripid in (select id from trips where vehicleid " +
-					"in (select id from vehicles where vehicleid in (select vehicleid from aclvehicle where userid="+userId+")  and deleted='f'));";
-			List<VehicleStatusCount> vehicleStatusCountList = new ArrayList<VehicleStatusCount>();
+			String sql = "select * from livevehiclestatus where tripid in " + "("
+					+ "select id from trips where active='t' and vehicleid in "
+					+ "(" + "select vehicleid from aclvehicle where userid = "
+					+ userId + ")" + ")";
+			
 			connection = DataBaseConnection.getInstance().getConnection();
 			statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
-			VehicleStatusCount statusCount = null;
 			while(rs.next()){
-				statusCount = new VehicleStatusCount();
-				statusCount.setLastupdatedatdiff(rs.getBoolean("lastupdatedatdiff"));
-				statusCount.setModuleupdatetimediff(rs.getBoolean("moduleupdatetimediff"));	
-				vehicleStatusCountList.add(statusCount);
-			}
-			
-			
-			LOG.debug("OnLine/Offline vehicles count query is "+sql);
-
-			for(VehicleStatusCount vehicleStatusCount : vehicleStatusCountList){
-				if(vehicleStatusCount.isLastupdatedatdiff() && vehicleStatusCount.isModuleupdatetimediff()){
-					totalOfflineVehicleCount=totalOfflineVehicleCount+1;
-				}else{
-					onlineVehiclesCount=onlineVehiclesCount+1;
-				}
+				PGgeometry geom = (PGgeometry)rs.getObject("vehiclelocation");
+				LiveVehicleStatus vehicleStatus = new LiveVehicleStatus(rs.getLong("tripid"),
+						geom.getGeometry(),
+						rs.getFloat("gsmstrength"),
+						rs.getFloat("gpsstrength"),
+						rs.getFloat("batvolt"),
+						rs.getFloat("distance"),
+						rs.getBoolean("cc"),
+						rs.getLong("sqd"),
+						rs.getLong("sqg"),
+						rs.getInt("mrs"),
+						rs.getFloat("course"),
+						rs.getBoolean("isidle"),
+						rs.getFloat("maxspeed"),
+						rs.getInt("fuelad"),
+						rs.getInt("cdc_counter"),
+						rs.getFloat("cumulativedistance"),
+						rs.getBoolean("mailsent"),
+						rs.getLong("prevsqd"),
+						rs.getInt("cid"),
+						rs.getInt("lac"),
+						rs.getString("geolocation"),
+						new Date(rs.getTimestamp("lastupdatedat").getTime()),
+						rs.getInt("rs"),
+						new Date(rs.getTimestamp("moduleupdatetime").getTime()), 
+						rs.getBoolean("isoffroad"));
+				vehicleStatusCountList.add(vehicleStatus);
 			}
 		} catch(Exception e){
 			LOG.error("Error while processing offline and online count", e);
@@ -278,12 +293,7 @@ public class LiveVehicleStatusDaoImpl implements ILiveVehicleStatusDAO {
 		}
 		
 		//int offroadCount = getOffroadCount(userId);
-		LiveVehicleStatus lvs = new LiveVehicleStatus(onlineVehiclesCount,totalOfflineVehicleCount, 0);
-		LOG.debug("\nTotal count of Online vehicle is : "+lvs.getOnLineCount()
-				+"\nOffline Count is : "+lvs.getTotalOffLineCount()+/*" Offroad count : "+offroadCount+*/"\ntotal vehicles are "
-				+(lvs.getOnLineCount()+lvs.getTotalOffLineCount()));
-		
-		return lvs;
+		return vehicleStatusCountList;
 	}
 
 	/*public int getOffroadCount(Long userId) {
