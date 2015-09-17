@@ -24,7 +24,7 @@
 				/login.* loginController
 				/home.* homeController
 				/main.* mainController
-				<!-- /wifi.* wifiController -->
+				/live.* liveController
 				<!-- /busdetailshome.* busDeatilsController -->
 			</value>
 		</property>
@@ -65,13 +65,9 @@
 	
 	<bean name="homeController" class="com.harman.its.controllers.HomeController">
 	</bean>
-	<!-- <bean name="fareChartUploadController" class="com.harman.its.controllers.FareChartUploadController">
-		<property name="access">
-			<list>
-				<value>ADMIN</value>
-			</list>
-		</property>
-	</bean> -->
+	<bean name="liveController" class="com.harman.its.controllers.LiveDatController">
+		
+	</bean>
 	
 <!--	<bean name="reportEditableController" class="com.harman.its.controllers.ReportEditableController">
 		<property name="access">

@@ -31,6 +31,7 @@ $(function(){
    $('#navbar').load("/HITS-UI/main.do?type=SideBar");  
    $('#footer').load("/HITS-UI/main.do?type=Footer");
    $('#lastlogin').load("/HITS-UI/main.do?type=LastLogin");
+   $('#map').load("/HITS-UI/main.do?type=map");
 });
 
     

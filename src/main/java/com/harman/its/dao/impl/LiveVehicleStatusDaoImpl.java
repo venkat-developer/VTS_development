@@ -18,7 +18,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.harman.its.dao.idao.ILiveVehicleStatusDAO;
 import com.harman.its.entity.LiveVehicleStatus;
 import com.harman.its.entity.UserEntity;
-import com.harman.its.entity.VehicleStatusCount;
 import com.harman.its.entity.rowmapper.LiveVehicleStatusCacheRowMapper;
 import com.harman.its.utils.DataBaseConnection;
 import com.harman.its.utils.DateUtils;
@@ -238,8 +237,6 @@ public class LiveVehicleStatusDaoImpl implements ILiveVehicleStatusDAO {
 	}*/
 
 	public List<LiveVehicleStatus> fetchLiveVehicleStatusOfUser(Long userId) {
-		int onlineVehiclesCount = 0;
-		int totalOfflineVehicleCount=0;
 		Connection connection = null;
 		Statement statement = null;
 		List<LiveVehicleStatus> vehicleStatusCountList = new ArrayList<LiveVehicleStatus>();
@@ -333,7 +330,10 @@ public class LiveVehicleStatusDaoImpl implements ILiveVehicleStatusDAO {
 	}
 
 	
-	public List<LiveVehicleStatus> selectAllForCacheByTripId(Long tripId) {
+	public LiveVehicleStatus getLiveDataByTripId(Long tripId) {
+		Connection connection = null;
+		Statement statement = null;
+		try{
 		String sql = "select hm.imei, lv.tripid, lv.cumulativedistance, lastupdatedat, lv.moduleupdatetime, gsmstrength, gpsstrength, lv.sqd, lv.sqg,"
 				+" 	lv.vehiclelocation, batvolt, lv.isoffroad, cc, maxspeed, v.id as vehicleid, t.speedlimit, t.scheduledtrip, "
 				+"  t.tripstartdate, t.enddate, t.driverid, 0 as digital1, 0 as digital2, 0 as pingcounter, 0 as gps_fix_information, v.displayname,"
@@ -343,7 +343,53 @@ public class LiveVehicleStatusDaoImpl implements ILiveVehicleStatusDAO {
 				+"  left join vehicles v on t.vehicleid= v.id "
 				+"  left join hardwaremodules hm on v.imeiid=hm.id  "
 				+" where t.active='t' and t.id="+tripId+" and t.enddate is null";
-		return jdbcTemplate.query(sql, new LiveVehicleStatusCacheRowMapper());
+		connection = DataBaseConnection.getInstance().getConnection();
+		statement = connection.createStatement();
+		ResultSet rs = statement.executeQuery(sql);
+		while(rs.next()){
+			LiveVehicleStatus liveVehicleObject = new LiveVehicleStatus();
+			
+			liveVehicleObject.setTripId(rs.getLong("tripid"));
+			liveVehicleObject.setImei(rs.getString("imei"));
+			liveVehicleObject.setCumulativeDistance(rs.getFloat("cumulativedistance"));
+			liveVehicleObject.setLastUpdatedAt(new Date(rs.getTimestamp("lastupdatedat").getTime()));
+			liveVehicleObject.setGsmStrength(rs.getFloat("gsmstrength"));
+			liveVehicleObject.setGpsStrength(rs.getFloat("gpsstrength"));
+			liveVehicleObject.setSqd(rs.getLong("sqd"));
+			liveVehicleObject.setPrevSqd(rs.getLong("sqd"));
+			liveVehicleObject.setSqg(rs.getLong("sqg"));
+			liveVehicleObject.setBatteryVoltage(rs.getFloat("batvolt"));
+			liveVehicleObject.setOffroad(rs.getBoolean("isoffroad"));
+			liveVehicleObject.setChargerConnected(rs.getBoolean("cc"));
+			liveVehicleObject.setMaxSpeed(rs.getFloat("maxspeed"));
+			liveVehicleObject.setVehicleId(rs.getLong("vehicleid"));
+			liveVehicleObject.setDriverId(rs.getLong("driverid"));
+			liveVehicleObject.setSpeedLimit(rs.getDouble("speedlimit"));
+			liveVehicleObject.setScheduleTrip(rs.getBoolean("scheduledtrip"));
+			liveVehicleObject.setTripStartDate(rs.getDate("tripstartdate"));
+			liveVehicleObject.setTripEndDate(rs.getDate("enddate"));
+			liveVehicleObject.setDigital1(rs.getBoolean("digital1"));
+			liveVehicleObject.setDigital2(rs.getBoolean("digital2"));
+			liveVehicleObject.setGps_fix_information(rs.getInt("gps_fix_information"));
+			liveVehicleObject.setModuleUpdateTime(new Date(rs.getTimestamp("moduleupdatetime").getTime()));
+			PGgeometry geom = (PGgeometry)rs.getObject("vehiclelocation");
+			liveVehicleObject.setLocation(geom.getGeometry());
+			liveVehicleObject.setLatestButtonPressed(rs.getInt("latestbuttonpressed"));
+			liveVehicleObject.setIdle(rs.getBoolean("isidle"));
+			liveVehicleObject.setCourse(rs.getFloat("course"));
+			return liveVehicleObject;
+		}
+		}catch(Exception exception){
+			LOG.error("Error while loading live data", exception);
+		}finally {
+			try {
+				DataBaseConnection.getInstance().closeStatement(statement);
+				DataBaseConnection.getInstance().closeConnection(connection);
+			} catch (SQLException e) {
+				LOG.error("Error while Closing Database Connection", e);
+			}
+		}
+		return null;
 	}
 
 	@Override
