@@ -23,13 +23,18 @@
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart(onLineCount,offlinecount) {
-		alert('You have called me '+onLineCount+' offline count'+offlinecount);
+	  //(${vehiclesonlinecount},${vehiclesoffroadcount},${vehiclesofflinecdccount},${vehiclesofflinelowgpscount},${vehiclesofflinelowgsmcount},${vehiclesofflinecount});
+      function drawChart(vehiclesonlinecount,vehiclesoffroadcount,vehiclesofflinecdccount,vehiclesofflinelowgpscount,vehiclesofflinelowgsmcount,vehiclesofflinecount) {
+		//alert('You have called me '+onLineCount+' offline count'+offlinecount);
         // Create the data table.
          var data = google.visualization.arrayToDataTable([
           ['Status', 'No.of Vehicles'],
-          ['Online',     onLineCount+10],
-          ['Offline',      offlinecount],
+          ['Online',     vehiclesonlinecount],
+          ['Offroad',      vehiclesoffroadcount],
+		  ['Charger Disconnected',      vehiclesofflinecdccount],
+		  ['Low GPS',      vehiclesofflinelowgpscount],
+		  ['Low GSM',      vehiclesofflinelowgsmcount],
+		  ['Offline',      vehiclesofflinecount]
         ]);
 
         // Set chart options
@@ -71,12 +76,10 @@
 					<center>
 						<div id ="chart_div" class="orbit-container" style ="height:500px">
 							<script>
-							drawChart(${countOfVehicles.onLineCount},${countOfVehicles.totalOffLineCount});
+							drawChart(${vehiclesonlinecount},${vehiclesoffroadcount},${vehiclesofflinecdccount},${vehiclesofflinelowgpscount},${vehiclesofflinelowgsmcount},${vehiclesofflinecount});
 							</script>
 						</div>
-					<div id ="data" class="orbit-container" style ="height:100px">Online Count : ${countOfVehicles.onLineCount},Offline COunt : ${countOfVehicles.totalOffLineCount}
-							
-						</div>
+					
 					</center>
 					<br>
 				</div>
@@ -98,4 +101,3 @@
 	<script src="js/brts/main.js"></script>
 </body>
 </html>
-
