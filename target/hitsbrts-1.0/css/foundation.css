@@ -2148,7 +2148,7 @@ meta.foundation-mq-topbar {
   overflow: hidden;
   width: 100%;
   position: relative;
-  background: none; }
+  background: white; }
   .orbit-container .orbit-slides-container {
     list-style: none;
     margin: 0;
@@ -3672,9 +3672,12 @@ dialog[open] {
   -webkit-backface-visibility: hidden;
   position: relative;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+background-color: white;
+  }
   .off-canvas-wrap.move-right, .off-canvas-wrap.move-left {
     min-height: 100%;
+	background-color: white;
     -webkit-overflow-scrolling: touch; }
 
 .inner-wrap {

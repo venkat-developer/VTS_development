@@ -19,7 +19,7 @@
 		<ul class="off-canvas-list">
 			<li><label>Menu</label></li>
 			<li><a href="/HITS-UI/home.do">Home</a></li>
-			<li><a href="/HITS-UI/Configfilehome.do?step_number=device_type">Live Data</a></li>
+			<li><a href="/HITS-UI/live.do">Live Data</a></li>
 			<li><label>Reports</label></li>
 			<li><a href="/HITS-UI/divisionhome.do">Trck</a></li>
 			<li><a href="/HITS-UI/depothome.do">Idle</a></li>

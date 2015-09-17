@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
+<!-- Head part-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>VTS-Home</title>
-
+<title>HITS</title>
 <link rel="stylesheet" href="css/foundation.css" />
 <link rel="stylesheet" href="css/normalize.css" />
 
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 	
 	<script>
   function initialize() {
@@ -60,17 +60,6 @@
 			</div>
 		</div>
 	</div>
-	<br>
-	<!-- Footer of the Google app html-->
-	<div id="footer"></div>
-	<script src="js/vendor/modernizr.js"></script>
-	<script src="js/vendor/jquery.js"></script>
-	<script src="js/foundation.min.js">
-		
-	</script>
-	<script src="js/foundation.js"></script>
-	<script src="js/foundation.orbit.js"></script>
-	<script src="js/brts/main.js"></script>
 </body>
 </html>
 

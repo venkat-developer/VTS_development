@@ -65,12 +65,8 @@
 	
 	<bean name="homeController" class="com.harman.its.controllers.HomeController">
 	</bean>
-	<bean name="liveController" class="com.harman.its.controllers.FareChartUploadController">
-		<property name="access">
-			<list>
-				<value>ADMIN</value>
-			</list>
-		</property>
+	<bean name="liveController" class="com.harman.its.controllers.LiveDatController">
+		
 	</bean>
 	
 <!--	<bean name="reportEditableController" class="com.harman.its.controllers.ReportEditableController">

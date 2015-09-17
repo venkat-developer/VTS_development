@@ -26,7 +26,6 @@ import com.harman.its.utils.SessionUtils;
  */
 public class HomeController extends SimpleFormController {
 	Logger logger = Logger.getLogger(HomeController.class);
-	
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response){
 		ModelAndView model = new ModelAndView("home");
 		logger.debug("Successfully Logged in now you are in Home Controller");

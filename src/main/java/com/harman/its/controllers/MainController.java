@@ -34,6 +34,8 @@ public class MainController extends SimpleFormController {
 				model=new ModelAndView("lastlogin");
 				getlastLoggedInDeatils(model);
 				SessionUtils.addUserDeatils(model);
+			}else if(requestType.equalsIgnoreCase("map")){
+				model=new ModelAndView("map");
 			}
 		}
 		return model;
