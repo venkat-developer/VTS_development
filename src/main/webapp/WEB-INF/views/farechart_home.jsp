@@ -18,18 +18,54 @@
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
+ <script type="text/javascript">
+      var script = '<script type="text/javascript" src="http://google-maps-' +
+          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
+      if (document.location.search.indexOf('compiled') !== -1) {
+        script += '-compiled';
+      }
+      script += '.js"><' + '/script>';
+      document.write(script);
+    </script>
    <script>
-  function initialize() {
-    var mapCanvas = document.getElementById('map_Data');
-    var mapOptions = {
-      center: new google.maps.LatLng(12.123, 77.123),
-      zoom: 3,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+   var mapCanvas ;
+   var map1=false ;
+function addMapMarkers(latitude,longitude,vehicleName){
+	if(!map1){
+		var mapCanvas = document.getElementById('map_Data');
+		var mapOptions = {center: new google.maps.LatLng(12.123, 77.123),
+						  zoom: 4,
+						  mapTypeId: google.maps.MapTypeId.ROADMAP
+						}
+		map = new google.maps.Map(mapCanvas,mapOptions);
+		map1=true;
+	}
+	var marker = new google.maps.Marker({
+          map: map,
+          position: new google.maps.LatLng(latitude,longitude ),
+          title: vehicleName,
+		  icon:"img/vehicles/360s.png",
+		  draggable: false
+        });	
+	var contentString = 'EXample testing.....';
+        infoBubble = new InfoBubble({
+          maxWidth: 300
+        });
+    var div = document.createElement('DIV');
+        div.innerHTML = longitude;
+		
+        infoBubble.addTab('Vehicle Info', div);
+        //infoBubble.addTab('Uluru', contentString);
+
+    new google.maps.event.addListener(marker, 'click', function() {
+          if (!infoBubble.isOpen()) {
+            infoBubble.open(map, marker);
+          }else{
+			  infoBubble.close();
+		  }
+          });
     }
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+ </script>
 
 </head>
 
@@ -51,7 +87,7 @@
 				<div id="navbar"></div>
 				<section class="main-section"> <!-- content goes here -->
 				<br>
-				<div class="large-1 push columns" style="height:500px;overflow-y:scroll;width: 153px; overflow-x: visible;">
+				<!--<div class="large-1 push columns" style="height:500px;overflow-y:scroll;width: 153px; overflow-x: visible;">
 				<div style="background-image: linear-gradient(to bottom,#2ba6cb 0,#2ba6cb 100%);font-weight: bold;color: #FFF;height: 22px;padding-top: 2px;padding-left: 0px;width:115px">Vehicles List</div>
 				<c:forEach items='${tripDeatils}' var='tripdata'>
 					<a herf="#"><div style="border-radius: 10px; width:115px;overflow-wrap: initial;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;border-top-left-radius: 5px;border-top-right-radius: 5px">
@@ -59,11 +95,15 @@
 					<ul><li><h1 style="font-size:.9em;">Driver Name : ${tripdata.driverName}</h1></li></ul>
 					</div></a>
 				</c:forEach>
-				</div>
-				<div class="large-10 columns">
-					<center>
-						<div class="orbit-container" id="map_Data" style ="height:500px">
-
+				</div> -->
+				<div class="large-12 columns">
+						<div class="orbit-container" id="map_Data" style ="height:500px;border: solid;border-color: gainsboro;margin:0px">
+							<c:forEach items='${tripDeatils}' var='tripdata'>
+								<script>
+										addMapMarkers(${tripdata.latitude},${tripdata.longitude},"${tripdata.vehicleName}");
+								</script>
+							</c:forEach>
+							
 						</div>
 				</center>
 					<br>

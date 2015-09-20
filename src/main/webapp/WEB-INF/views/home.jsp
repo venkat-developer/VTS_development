@@ -38,8 +38,7 @@
         ]);
 
         // Set chart options
-		var options = {'title':'How Much Pizza I Ate Last Night',
-						title: 'My Daily Activities',
+		var options = {'title':'Vehicle Status Summary',
 						pieHole: 0.4,
                        'width':600,
                        'height':600};
@@ -72,9 +71,9 @@
 				<section class="main-section"> <!-- content goes here -->
 				<br>
 				<br>
-				<div class="large-9 push-1 columns">
+				<div class="large-12 columns">
 					<center>
-						<div id ="chart_div" class="orbit-container" style ="height:500px">
+						<div id ="chart_div" class="orbit-container" style ="height:500px;border: solid;border-color: gainsboro;margin:0px">
 							<script>
 							drawChart(${vehiclesonlinecount},${vehiclesoffroadcount},${vehiclesofflinecdccount},${vehiclesofflinelowgpscount},${vehiclesofflinelowgsmcount},${vehiclesofflinecount});
 							</script>

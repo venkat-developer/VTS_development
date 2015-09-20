@@ -12,9 +12,8 @@
   </head>
   <body>
     <!-- Footer of the Google app html-->
-    <br><br>   
     <div class="row" style="color:#1AB3BD;height:5%;text-align:center">
-      <p><strong>© Copyright at Harman</strong></p>
+      <p><strong>© Copyright</strong></p>
     </div>
   </body>
 </html>

@@ -15,41 +15,18 @@
 <!-- Body Part of html-->
 <body>
 
-	<br>
-	<br>
-	<br>
 	<!-- Header part-->
 	<div id="header"></div><br>
 	<!-- Body part-->
-	<div class="row" style="opacity: 30">
-		<br> <br>
+	<div class="row" style="opacity: 30;height:585px;border: solid;border-color: gainsboro;margin:0px;padding:10px">
 		<!--Slider part-->
-		<div class="large-9 push-3 columns" style="opacity: 10">
-			<center>
-				<div class="orbit-container">
-					<ul data-orbit
-						data-options="animation:slide;
-                                      pause_on_hover:true;
-                                      animation_speed:500;
-                                      navigation_arrows:true;
-                                      bullets:false;">
-						<li><img src="img/home1.jpg" alt="slide 1" height="3600"
-							width="900" /></li>
-						<li><img src="img/home2.jpg" alt="slide 1" height="3600"
-							width="900" /></li>
-						<li><img src="img/home3.jpg" alt="slide 1" height="3600"
-							width="900" /></li>
-					</ul>
-				</div>
-			</center>
-			<br>
-		</div>
+		
 		<!-- Login part-->
-		<div class="large-3 pull-9 columns">
+		<div class="large-3 push-8 columns">
 			<br>
 			<div class="row">
 				<div class="th">
-					<div class="section-container tabs" data-section>
+					<center><div class="section-container tabs" data-section>
 						<h5 class="title">
 							<strong><center>Login Here</center></strong>
 						</h5>
@@ -72,24 +49,22 @@
 								</center>
 								<br>
 								<center>
-									<button type="submit" class="radius button">Submit</button>
+									<button type="submit" class="radius button">Login</button>
 								</center>
 							</form>
 						</div>
-					</div>
+					</div></center>
 				</div>
 			</div>
 			<br>
 			<!-- Image displayed below the login form-->
 
-			<img
-				src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbsXy-ZiBF44bzEeaeZlrpwjbkhRpvJnejYq_tlG5xf2lCse3tg"
-				alt="slide 1" height="3600" width="900" />
+			
 		</div>
 	</div>
 	<!--Body part div ends here-->
 	<!-- Footer of index.html-->
-
+<br>
 	<div id="footer"></div>
 	<!--Scripts of the index.html -->
 	<script>

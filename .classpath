@@ -33,5 +33,8 @@
 	<classpathentry kind="lib" path="J:/developement/libs/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="J:/developement/ivy-lib/fleetlibs/servlet-api.jar"/>
 	<classpathentry kind="lib" path="J:/developement/ivy-lib/fleetlibs/postgis.jar"/>
+	<classpathentry kind="lib" path="J:/ivy-lib/com.fasterxml.jackson.databind.jar"/>
+	<classpathentry kind="lib" path="J:/ivy-lib/jackson-databind-2.2.0-rc1.jar"/>
+	<classpathentry kind="lib" path="J:/ivy-lib/com.springsource.com.fasterxml.jackson.core.jackson-databind-2.0.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

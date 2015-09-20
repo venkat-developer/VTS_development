@@ -17,7 +17,6 @@ import com.harman.its.dao.impl.LogsDaoImpl;
 import com.harman.its.dao.impl.UserDaoImpl;
 import com.harman.its.entity.LogsEntity;
 import com.harman.its.entity.UserEntity;
-import com.harman.its.entity.UserEntity.UserRole;
 import com.harman.its.utils.Constants;
 import com.harman.its.utils.Constants.SESSION;
 import com.harman.its.utils.SessionUtils;
