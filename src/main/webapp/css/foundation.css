@@ -865,8 +865,8 @@ select {
   .column,
   .columns {
     position: relative;
-    padding-left: 0.9375em;
-    padding-right: 0.9375em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     float: left; }
 
   .large-1 {
@@ -984,7 +984,7 @@ select {
 
   .push-1 {
     position: relative;
-    left: 8.33333%;
+    left: 7.33333%;
     right: auto; }
 
   .pull-1 {
@@ -1171,7 +1171,8 @@ button, .button {
   button.expand, .button.expand {
     padding-right: 0;
     padding-left: 0;
-    width: 50%; }
+    width: 30%; 
+	border-radius: 5px}
   button.left-align, .button.left-align {
     text-align: left;
     text-indent: 0.75rem; }
@@ -4344,6 +4345,7 @@ textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  border-radius: 5px;
   transition: box-shadow 0.45s, border-color 0.45s ease-in-out; }
   input[type="text"]:focus,
   input[type="password"]:focus,

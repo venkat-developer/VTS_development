@@ -15,7 +15,13 @@
 </head>
 
 <body>
-	<div class="large-5 columns push-6" style="height: 17%;">
+<div class="large-2 push-1 columns">
+					<input type="text" placeholder="Find Vehicle">
+				</div>
+				<div class="large-2 push-1 columns">
+					<a href="#" class="alert button expand">Search</a>
+				</div>
+	<div class="large-5 columns small-3" style="height: 17%;">
 		<label>
 		<br>
 		<strong>

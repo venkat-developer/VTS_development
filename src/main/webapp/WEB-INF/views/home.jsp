@@ -64,7 +64,9 @@
 					class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
 				</section> <section class="middle tab-bar-section">
 				<h1 class="title">Menu</h1>
+				
 				</section>
+				
 				<div id="lastlogin"></div>
 				</nav>
 				<div id="navbar"></div>
