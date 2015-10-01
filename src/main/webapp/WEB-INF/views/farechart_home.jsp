@@ -18,19 +18,13 @@
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
- <script type="text/javascript">
-      var script = '<script type="text/javascript" src="http://google-maps-' +
-          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
-      if (document.location.search.indexOf('compiled') !== -1) {
-        script += '-compiled';
-      }
-      script += '.js"><' + '/script>';
-      document.write(script);
-    </script>
+<script src="js/brts/InfoBubble.js"></script>
+ 
    <script>
    var mapCanvas ;
    var map1=false ;
-function addMapMarkers(latitude,longitude,vehicleName){
+   var markersArray =[];
+function addMapMarkers(data){
 	if(!map1){
 		var mapCanvas = document.getElementById('map_Data');
 		var mapOptions = {center: new google.maps.LatLng(12.123, 77.123),
@@ -42,29 +36,37 @@ function addMapMarkers(latitude,longitude,vehicleName){
 	}
 	var marker = new google.maps.Marker({
           map: map,
-          position: new google.maps.LatLng(latitude,longitude ),
-          title: vehicleName,
+          position: new google.maps.LatLng(data.latitude,data.longitude ),
+          title: data.vehicleName,
 		  icon:"img/vehicles/360s.png",
 		  draggable: false
         });	
 	var contentString = 'EXample testing.....';
-        infoBubble = new InfoBubble({
+        var infoWindow = new InfoBubble({
           maxWidth: 300
         });
     var div = document.createElement('DIV');
-        div.innerHTML = longitude;
+        div.style.color ="#FFFFFF";
+		div.style.fontSize ="22px";
+		div.innerHTML = '<b>Vehicle Name : </b>'+data.vehicleName+'<br>';
+		div.innerHTML += '<b>Latitude : </b>'+data.latitude+'<br>';
+		div.innerHTML += '<b>Longitude : </b>'+data.longitude+'<br>';
+		div.innerHTML += '<b>GSM : </b>'+data.gsmStrength+'<br>';
+		div.innerHTML += '<b>GPS : </b>'+data.gpsStrength+'<br>';
+		div.innerHTML += '<b>Reported Time : </b>'+data.lastUpdatedAt
 		
-        infoBubble.addTab('Vehicle Info', div);
+        infoWindow.addTab('Vehicle Info', div);
         //infoBubble.addTab('Uluru', contentString);
-
     new google.maps.event.addListener(marker, 'click', function() {
-          if (!infoBubble.isOpen()) {
-            infoBubble.open(map, marker);
+          if (!infoWindow.isOpen()) {
+            infoWindow.open(map, marker);
           }else{
-			  infoBubble.close();
+			  alert('You are here ');
+			  infoWindow.close();
 		  }
-          });
+          }); 
     }
+	
  </script>
 
 </head>
@@ -98,11 +100,23 @@ function addMapMarkers(latitude,longitude,vehicleName){
 				</div> -->
 				<div class="large-12 columns">
 						<div class="orbit-container" id="map_Data" style ="height:500px;border: solid;border-color: gainsboro;margin:0px">
-							<c:forEach items='${tripDeatils}' var='tripdata'>
+							<c:forEach items='${tripDeatils}' var='tripdata'> -->
 								<script>
-										addMapMarkers(${tripdata.latitude},${tripdata.longitude},"${tripdata.vehicleName}");
+								var rawData = {
+												vehicleName : '${tripdata.vehicleName}',
+												latitude : ${tripdata.latitude},
+												longitude : ${tripdata.longitude},
+												gsmStrength : ${tripdata.gsmStrength},
+												gpsStrength : ${tripdata.gpsStrength},
+												batteryVoltage : ${tripdata.batteryVolatge},
+												chargerConnected : ${tripdata.chargerConnected},
+												course : ${tripdata.direction},
+												maxSpeed : ${tripdata.speed},
+												lastUpdatedAt : '${tripdata.updatedatedTime}',
+											}
+								addMapMarkers(rawData);
 								</script>
-							</c:forEach>
+							<!-- </c:forEach> -->
 							
 						</div>
 				</center>
@@ -124,5 +138,6 @@ function addMapMarkers(latitude,longitude,vehicleName){
 	<script src="js/foundation.js"></script>
 	<script src="js/foundation.orbit.js"></script>
 	<script src="js/brts/main.js"></script>
+	
 </body>
 </html>
