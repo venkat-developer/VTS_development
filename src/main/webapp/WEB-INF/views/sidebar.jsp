@@ -21,7 +21,7 @@
 			<li><a href="/HITS-UI/home.do">Home</a></li>
 			<li><a href="/HITS-UI/live.do">Live Data</a></li>
 			<li><label>Reports</label></li>
-			<li><a href="/HITS-UI/divisionhome.do">Trck</a></li>
+			<li><a href="/HITS-UI/track.do">Trck</a></li>
 			<li><a href="/HITS-UI/depothome.do">Idle</a></li>
 			<li><a href="/HITS-UI/busdetailshome.do">Stastics</a></li>
 			<li><a href="/HITS-UI/driverhome.do">Driver</a></li>

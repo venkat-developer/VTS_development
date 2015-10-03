@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.harman.its.dao.idao.ITripsDao;
 import com.harman.its.entity.TripsEntity;
@@ -14,6 +15,9 @@ import com.harman.its.utils.DataBaseConnection;
 
 
 public class TripDaoImp implements ITripsDao{
+
+	/**	Mapping TripId with its respective entity*/
+	public ConcurrentHashMap<Long, TripsEntity> cachedTrips = new ConcurrentHashMap<Long, TripsEntity>();
 
 	@Override
 	public TripsEntity insert(TripsEntity entity) throws SQLException,
@@ -50,21 +54,21 @@ public class TripDaoImp implements ITripsDao{
 			ResultSet rs = statement.executeQuery(sideASQl.toString());
 			while(rs.next()){
 				TripsEntity trip = new TripsEntity(rs.getLong("id"),
-				rs.getString("tripname"),
-				rs.getDate("tripstartdate"),
-				rs.getBoolean("overridefuelcalibration"),
-				rs.getFloat("speedlimit"),
-				rs.getLong("vehicleid"),
-				rs.getLong("driverid"),
-				rs.getString("destination"),
-				rs.getBoolean("scheduledtrip"),
-				rs.getDate("enddate"),
-				rs.getBoolean("active"),
-				rs.getLong("cumulativedistance"),
-				rs.getLong("geofencerefid"),
-				rs.getBoolean("mail_sent"),
-				rs.getInt("start_ad"),
-				rs.getInt("idlepointstimelimit"));
+						rs.getString("tripname"),
+						rs.getDate("tripstartdate"),
+						rs.getBoolean("overridefuelcalibration"),
+						rs.getFloat("speedlimit"),
+						rs.getLong("vehicleid"),
+						rs.getLong("driverid"),
+						rs.getString("destination"),
+						rs.getBoolean("scheduledtrip"),
+						rs.getDate("enddate"),
+						rs.getBoolean("active"),
+						rs.getLong("cumulativedistance"),
+						rs.getLong("geofencerefid"),
+						rs.getBoolean("mail_sent"),
+						rs.getInt("start_ad"),
+						rs.getInt("idlepointstimelimit"));
 				tripsList.add(trip);
 			}
 			return tripsList;
@@ -88,7 +92,7 @@ public class TripDaoImp implements ITripsDao{
 
 		}
 	}
-	
+
 	public List<TripsEntity> selectTripsByUserId(long userId) throws SQLException,
 	ClassNotFoundException {
 		Connection connection = null;
@@ -138,6 +142,67 @@ public class TripDaoImp implements ITripsDao{
 			}
 
 		}
+	}
+
+
+	public List<TripsEntity> fetchAllTripsByVehicleId (long vehicleId) {
+		Connection connection = null;
+		Statement statement = null;
+		List<TripsEntity> tripsList = new ArrayList<TripsEntity>();
+		try {
+			//String sql =  "select * from trips t where t.active = true and t.vehicleid in (select a.vehicleid from aclvehicle a where a.userid = "+ userId+")";
+			connection = DataBaseConnection.getInstance().getConnection();
+			statement = connection.createStatement();
+			StringBuilder sideASQl = new StringBuilder();
+			sideASQl.append("select * from trips where vehicleid =");
+			sideASQl.append(vehicleId);
+			ResultSet rs = statement.executeQuery(sideASQl.toString());
+			while(rs.next()){
+				TripsEntity trip = new TripsEntity(rs.getLong("id"),
+						rs.getString("tripname"),
+						rs.getDate("tripstartdate"),
+						rs.getBoolean("overridefuelcalibration"),
+						rs.getFloat("speedlimit"),
+						rs.getLong("vehicleid"),
+						rs.getLong("driverid"),
+						rs.getString("destination"),
+						rs.getBoolean("scheduledtrip"),
+						rs.getDate("enddate"),
+						rs.getBoolean("active"),
+						rs.getLong("cumulativedistance"),
+						rs.getLong("geofencerefid"),
+						rs.getBoolean("mail_sent"),
+						rs.getInt("start_ad"),
+						rs.getInt("idlepointstimelimit"));
+				tripsList.add(trip);
+			}
+			return tripsList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					DataBaseConnection.getInstance().closeConnection(connection);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return tripsList;
 	}
 
 	@Override

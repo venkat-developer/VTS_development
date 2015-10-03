@@ -25,6 +25,7 @@
 				/home.* homeController
 				/main.* mainController
 				/live.* liveController
+				/track.* trackController
 				<!-- /busdetailshome.* busDeatilsController -->
 			</value>
 		</property>
@@ -66,6 +67,12 @@
 	<bean name="homeController" class="com.harman.its.controllers.HomeController">
 	</bean>
 	<bean name="liveController" class="com.harman.its.controllers.LiveDatController">
+		
+	</bean>
+	
+	
+	
+	<bean name="trackController" class="com.harman.its.controllers.MapReportController">
 		
 	</bean>
 	

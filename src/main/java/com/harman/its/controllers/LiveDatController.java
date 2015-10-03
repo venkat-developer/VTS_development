@@ -25,6 +25,13 @@ import com.harman.its.entity.UserEntity;
 import com.harman.its.entity.Vehicle;
 import com.harman.its.utils.SessionUtils;
 
+
+
+
+
+
+
+
 /**
  * Controller for Home page
  * View : "home"
@@ -35,7 +42,7 @@ import com.harman.its.utils.SessionUtils;
 public class LiveDatController extends SimpleFormController {
 	Logger logger = Logger.getLogger(LiveDatController.class);
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response){
-		ModelAndView model = new ModelAndView("farechart_home");
+		ModelAndView model = new ModelAndView("liveData");
 		List<TripDeatils> liveFinalResult = null;
 		try {
 			logger.debug("Successfully Logged in now you are in Home Controller Started at "+new Date());
