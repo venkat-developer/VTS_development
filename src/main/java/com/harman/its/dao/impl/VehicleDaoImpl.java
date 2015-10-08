@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -94,5 +95,57 @@ public class VehicleDaoImpl implements IVehicleDao{
 			}
 		}
 		return null;
+	}
+	public List<Vehicle> selectByUserId(long userId) throws ClassNotFoundException, SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		List<Vehicle> vehiclesList = new ArrayList<Vehicle>();
+		try {
+			connection = DataBaseConnection.getInstance().getConnection();
+			statement = connection.createStatement();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select * from vehicles where deleted = false and id in ");
+			sql.append("( select vehicleid from aclvehicle where userid in ( select id from users where owner_id =");
+			sql.append(userId);
+			sql.append("or id =");
+			sql.append(userId);
+			sql.append("))");
+			logger.debug("Query : "+sql.toString());
+			ResultSet rs = statement.executeQuery(sql.toString());
+			while(rs.next()){
+				Vehicle vehicle = new Vehicle(new LongPrimaryKey(rs.getLong("id")),
+											  rs.getString("displayname"),
+											  rs.getString("make"),
+											  rs.getString("model"),
+											  rs.getString("year"),
+											  rs.getLong("imeiid"),
+											  rs.getDate("odometer_updatedat"),
+											  rs.getInt("odometer_value"),
+											  rs.getLong("fuelcaliberationid"),
+											  rs.getInt("vehicle_icon_pic_id"),
+											  rs.getLong("groupid"),
+											  rs.getBoolean("deleted"),
+											  rs.getString("type"));
+				vehiclesList.add(vehicle);
+			}
+		} catch (SQLException e) {
+			throw new SQLException(e);
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					throw new SQLException(e);
+				}
+			}
+			if (connection != null) {
+				try {
+					DataBaseConnection.getInstance().closeConnection(connection);
+				} catch (SQLException e) {
+					throw new SQLException(e);
+				}
+			}
+		}
+		return vehiclesList;
 	}
 }

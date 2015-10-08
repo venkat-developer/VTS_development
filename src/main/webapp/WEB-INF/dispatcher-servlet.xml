@@ -26,6 +26,9 @@
 				/main.* mainController
 				/live.* liveController
 				/track.* trackController
+				/idle.* idleController
+				/stats.* statsController
+				/activity.* activityController
 				<!-- /busdetailshome.* busDeatilsController -->
 			</value>
 		</property>
@@ -73,6 +76,18 @@
 	
 	
 	<bean name="trackController" class="com.harman.its.controllers.MapReportController">
+		
+	</bean>
+	
+	<bean name="idleController" class="com.harman.its.controllers.IdleReportController">
+		
+	</bean>
+	
+	<bean name="statsController" class="com.harman.its.controllers.VehilceStatController">
+		
+	</bean>
+	
+	<bean name="activityController" class="com.harman.its.controllers.ActivityReportController">
 		
 	</bean>
 	

@@ -3,6 +3,7 @@ package com.harman.its.controllers;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import com.harman.its.dao.impl.TrackHistoryDaoImpl;
-import com.harman.its.dao.impl.TripDaoImp;
+import com.harman.its.dao.impl.VehicleDaoImpl;
 import com.harman.its.entity.TrackHistoryEntity;
-import com.harman.its.entity.TripsEntity;
+import com.harman.its.entity.Vehicle;
+import com.harman.its.utils.SessionUtils;
 
 
 
@@ -43,26 +45,28 @@ public class MapReportController extends SimpleFormController {
 		String startDate = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
 		String toStart = toDate+" "+toHrs+":"+toMin+":"+toSec;
 		logger.debug("Start Date : "+startDate+" , End Date : "+toStart);
-		long vehcileId = 7773240;
-		//TripDaoImp tripDao = new TripDaoImp();
-
-		//List<TripsEntity> resultset = tripDao.fetchAllTripsByVehicleId(vehcileId);
-		List<TrackHistoryEntity> trackData = new TrackHistoryDaoImpl().selectBetweenDates(vehcileId, startDate, toStart);
-		/*if (null != resultset) {
-			for (int i = 0; i < resultset.size(); i++) {
-				TripsEntity trip  = resultset.get(i);
+		
+		String vehicleIdString =request.getParameter("vehicleId");
+		logger.debug("Vehicle Id is "+vehicleIdString);
+		if(vehicleIdString!=null){
+			logger.debug("vehicleIdString is not null hence generate report for selected data ");
+			long vehicleId = Long.parseLong(vehicleIdString); 
+			VehicleDaoImpl vehicleDaoImpl = new VehicleDaoImpl();
+			List<Vehicle> vehiclesList = vehicleDaoImpl.selectByUserId(SessionUtils.getCurrentlyLoggedInUser().getId());
+			if(vehiclesList.size()!=0){
+				model.addObject("vehiclesList", vehiclesList);	
 			}
-		} */
-		//logger.debug("Track Data size is "+trackData.size());
-		for(int i =0;i<trackData.size();i++){
-			//logger.debug("Track data is values are ::: "+trackData.get(i).toString());	
+			List<TrackHistoryEntity> trackData = new TrackHistoryDaoImpl().selectBetweenDates(vehicleId, startDate, toStart);
+			if(trackData.size()!=0){
+				//logger.debug("You are adding some data here ....");
+				model.addObject("trackData", trackData);	
+			}	
+		}else{
+			logger.debug("vehicleIdString is ");
+			List<TrackHistoryEntity> trackData =new ArrayList<TrackHistoryEntity>();
+			model.addObject("trackData", trackData);
 		}
 		
-		
-		if(trackData.size()!=0){
-			//logger.debug("You are adding some data here ....");
-			model.addObject("trackData", trackData);	
-		}
 		
 		return model;
 	}

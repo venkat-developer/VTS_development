@@ -26,6 +26,16 @@
    var markersArray =[];
    var _aPolylines = null
    var mapObject = null;
+   function loadMap(){
+   var mapCanvas = document.getElementById('map_Data');
+		var mapOptions = {center: new google.maps.LatLng(12.123, 77.123),
+						  zoom: 4,
+						  mapTypeId: google.maps.MapTypeId.ROADMAP
+						}
+		map = new google.maps.Map(mapCanvas,mapOptions);
+		map1=true;
+   mapObject = map;
+  }
 function addMapMarkers(data){
 	if(!map1){
 		var mapCanvas = document.getElementById('map_Data');
@@ -109,6 +119,11 @@ function addMapMarkers(data){
 			
 				<div class="large-12 columns">
 						<div class="orbit-container" id="map_Data" style ="height:500px;border: solid;border-color: gainsboro;margin:0px">
+							<c:if test="${empty trackData}">
+							<script>
+							loadMap();
+							</script>
+							</c:if>
 							<c:forEach items='${trackData}' var='trackData'> 
 								<script>
 								var rawData = {

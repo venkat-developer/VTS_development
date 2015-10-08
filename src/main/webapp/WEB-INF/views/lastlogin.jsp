@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+  pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
+<%@ page language="java" import="java.util.*,org.json.simple.JSONValue"%>
 
 <!DOCTYPE html>
 <html>
@@ -50,17 +54,21 @@
 </head>
 
 <body>
-		<div class="large-2 push-1 columns">
-			<input type="text" placeholder="Find Vehicle">
-		</div>
 		<form action="/HITS-UI/track.do?report=set" method="post"	name="filters" id="filters">
-		<div class="large-2 push-1 columns">
-			<a href="#" class="alert button expand">Search</a>
+		<div class="large-2 push-1 columns" style="color:black">
+			<select name="vehicleId" style="padding: 0px;">
+			<c:forEach items='${vehiclesList}' var='vehicleData'> 
+				<option value="${vehicleData.id.id}">${vehicleData.displayName}</option>
+			</c:forEach>
+			</select>
 		</div>
-		<div class="small-3 columns">
+	<div class="large-2 push-1 columns">
+			<!-- <a href="#" class="alert button expand">Search</a> -->
+		</div>
+		<div class="large-2 push-1 columns">
 			<ul class="button-group round toggle" data-toggle="buttons-radio">
 				<li>
-					<input type="radio" id="r1" name="r-group" data-toggle="button" value="day">
+					<input type="radio" id="r1" name="r-group" data-toggle="button" value="today">
 					<label class="button" for="r1">Today</label>
 				</li>
 				<li>
@@ -68,6 +76,9 @@
 					<label class="button" for="r3">Custom</label>
 				</li>
 			</ul>
+		</div>
+		<div class="large-3 push-1 columns">
+		<button type="submit" class="radius button">Generate</button>
 		</div>
 	<label>
 		<br>
@@ -181,7 +192,7 @@
 						</div><!-- From seocnds end ... -->
 						<div class="small-1 columns" style="width:46px;color:black;"><strong>To : </strong></div>
 						<div class="large-3 columns" style="margin-top: 5px;width:270px">
-							<input type="date" name="to" id="to" style="width: 260px;">
+							<input type="date" name="to" id="to" style="width: 260px;" required>
 						</div>
 							<div class="large-1 columns" style="margin-top: 5px;">
 									<select name="thrs" id="thrs" style="color: black;">
@@ -274,7 +285,7 @@
 													</select>
 							</div>
 							<div class="large-1 columns" style="margin-top:0px;width:90px;">
-							<button type="submit" class="radius button">Go</button>
+							
 							</div>
 		</form>
 												

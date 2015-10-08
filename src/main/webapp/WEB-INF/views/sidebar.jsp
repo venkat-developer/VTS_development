@@ -22,10 +22,10 @@
 			<li><a href="/HITS-UI/live.do">Live Data</a></li>
 			<li><label>Reports</label></li>
 			<li><a href="/HITS-UI/track.do">Trck</a></li>
-			<li><a href="/HITS-UI/depothome.do">Idle</a></li>
-			<li><a href="/HITS-UI/busdetailshome.do">Stastics</a></li>
-			<li><a href="/HITS-UI/driverhome.do">Driver</a></li>
-			<li><a href="/HITS-UI/busStopshome.do">Activity</a></li>
+			<li><a href="/HITS-UI/idle.do">Idle</a></li>
+			<li><a href="/HITS-UI/stats.do">Stastics</a></li>
+			<!--  <li><a href="/HITS-UI/driverhome.do">Driver</a></li> -->
+			<li><a href="/HITS-UI/activity.do">Activity</a></li>
 			<li><a href="/HITS-UI/inputValidate.do">Settings</a></li>
 		</ul>
 	</aside>
