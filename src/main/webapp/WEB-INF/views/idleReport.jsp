@@ -149,9 +149,9 @@
 								<form>
 									<table id="dataTable" class="mytable filterable sortable"
 										cellspacing="0" width="100%">
-										<c:if test="${not empty reportSet}">
+										<c:if test="${not empty idlPointsData}">
 											<caption>
-												<strong>Transaction Reports ${from} - ${to} </strong>
+												<strong>Idle Report ${from} - ${to} </strong>
 												<%-- <br>
 											<c:if test="${not empty idlPointsData}">
 											<strong>Filter Data here
@@ -159,15 +159,18 @@
 											</c:if> --%>
 											</caption>
 										</c:if>
-										<!-- <thead>
+										<c:if test="${not empty idlPointsData}">
+										<thead>
 											<tr>
-												<c:forEach items="${tableColumnNamesList}" var="columnName">
-													<th title="Click to Sort"><strong
-														style="color: #159faa">${columnName}</strong></th>
-
-												</c:forEach>
+													<th title="Click to Sort"><strong style="color: #159faa">S.No</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Start Time</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">End Time</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Latitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Longitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Location</strong></th>
 											</tr>
-										</thead> -->
+										</thead>
+										</c:if>
 										<%
 											int count = 0;
 										%>

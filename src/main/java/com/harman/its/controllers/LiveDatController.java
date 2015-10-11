@@ -1,19 +1,13 @@
 package com.harman.its.controllers;
-
-
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
-
 import com.harman.its.dao.impl.DriverDaoImpl;
 import com.harman.its.dao.impl.LiveVehicleStatusDaoImpl;
 import com.harman.its.dao.impl.TripDaoImp;
@@ -25,22 +19,15 @@ import com.harman.its.entity.UserEntity;
 import com.harman.its.entity.Vehicle;
 import com.harman.its.utils.SessionUtils;
 
-
-
-
-
-
-
-
 /**
  * Controller for Home page
  * View : "home"
- *  
  * @author VAmukapati
- *
- */
+*/
+
 public class LiveDatController extends SimpleFormController {
 	Logger logger = Logger.getLogger(LiveDatController.class);
+
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response){
 		ModelAndView model = new ModelAndView("liveData");
 		List<TripDeatils> liveFinalResult = null;

@@ -140,7 +140,7 @@
 					<!-- content goes here -->
 
 					<div class="large-14 columns" style="height: 100%">
-						
+
 						<!--- Table Starts here--->
 						<div class="large-12 columns">
 							<br>
@@ -149,9 +149,9 @@
 								<form>
 									<table id="dataTable" class="mytable filterable sortable"
 										cellspacing="0" width="100%">
-										<c:if test="${not empty reportSet}">
+										<c:if test="${not empty activityReportList}">
 											<caption>
-												<strong>Transaction Reports ${from} - ${to} </strong>
+												<strong>Activity Report ${from} - ${to} </strong>
 												<%-- <br>
 											<c:if test="${not empty idlPointsData}">
 											<strong>Filter Data here
@@ -159,19 +159,23 @@
 											</c:if> --%>
 											</caption>
 										</c:if>
-										<!-- <thead>
+										<c:if test="${not empty activityReportList}">
+										<thead>
 											<tr>
-												<c:forEach items="${tableColumnNamesList}" var="columnName">
-													<th title="Click to Sort"><strong
-														style="color: #159faa">${columnName}</strong></th>
-
-												</c:forEach>
+													<th title="Click to Sort"><strong style="color: #159faa">S.No</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Speed</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Distance</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Latitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Longitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Location</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Updated At</strong></th>
 											</tr>
-										</thead> -->
+										</thead>
+										</c:if>
 										<%
 											int count = 0;
 										%>
-										<c:forEach items="${idlPointsData}" var="idlePoint">
+										<c:forEach items="${activityReportList}" var="activityData">
 											<tr>
 												<%
 													count = count + 1;
@@ -181,12 +185,13 @@
 														out.println(count);
 													%>
 												</td>
-												
-													<td>${idlePoint.starttime}</td>
-													<td>${idlePoint.endtime}</td>
-													<td>${idlePoint.idleLocation.getFirstPoint().getX()}</td>
-													<td>${idlePoint.idleLocation.getFirstPoint().getY()}</td>
-													<td>${idlePoint.locationName}</td>
+
+												<td>${activityData.speed}</td>
+												<td>${activityData.distance}</td>
+												<td>${activityData.latitude}</td>
+												<td>${activityData.longitude}</td>
+												<td>${activityData.location}</td>
+												<td>${activityData.occurredAt}</td>
 											</tr>
 										</c:forEach>
 

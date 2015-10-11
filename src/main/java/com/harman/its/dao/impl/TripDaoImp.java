@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.log4j.Logger;
+
 import com.harman.its.dao.idao.ITripsDao;
 import com.harman.its.entity.TripsEntity;
 import com.harman.its.utils.DataBaseConnection;
 
 
 public class TripDaoImp implements ITripsDao{
+	
+	Logger logger = Logger.getLogger(getClass());
 
 	/**	Mapping TripId with its respective entity*/
 	public ConcurrentHashMap<Long, TripsEntity> cachedTrips = new ConcurrentHashMap<Long, TripsEntity>();
@@ -102,6 +106,7 @@ public class TripDaoImp implements ITripsDao{
 			String sql =  "select * from trips t where t.active = true and t.vehicleid in (select a.vehicleid from aclvehicle a where a.userid = "+ userId+")";
 			connection = DataBaseConnection.getInstance().getConnection();
 			statement = connection.createStatement();
+			logger.debug("selectTripsByUserId Query is "+sql);
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()){
 				TripsEntity trip = new TripsEntity(rs.getLong("id"),
@@ -210,5 +215,4 @@ public class TripDaoImp implements ITripsDao{
 		// TODO Auto-generated method stub
 
 	}
-
 }

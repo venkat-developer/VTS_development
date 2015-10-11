@@ -3,7 +3,10 @@ package com.harman.its.controllers;
 
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +35,7 @@ public class MapReportController extends SimpleFormController {
 
 	Logger logger = Logger.getLogger(MapReportController.class);
 
-	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response) throws ClassNotFoundException, SQLException{
+	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response) throws ClassNotFoundException, SQLException, ParseException{
 		ModelAndView model = new ModelAndView("mapReport");
 		String fromDate=request.getParameter("from");
 		String toDate=request.getParameter("to");
@@ -42,12 +45,17 @@ public class MapReportController extends SimpleFormController {
 		String toHrs=request.getParameter("thrs");
 		String toMin=request.getParameter("tmin");
 		String toSec=request.getParameter("tsec");
-		String startDate = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
-		String toStart = toDate+" "+toHrs+":"+toMin+":"+toSec;
-		logger.debug("Start Date : "+startDate+" , End Date : "+toStart);
-		
+		String startDateString = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
+		String endDateString = toDate+" "+toHrs+":"+toMin+":"+toSec;
+		logger.debug("Start Date : "+startDateString+" , End Date : "+endDateString);
+
 		String vehicleIdString =request.getParameter("vehicleId");
 		logger.debug("Vehicle Id is "+vehicleIdString);
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+		Date startDate = simpleDateFormat.parse(startDateString);
+
+		Date endDate = simpleDateFormat.parse(endDateString);
 		if(vehicleIdString!=null){
 			logger.debug("vehicleIdString is not null hence generate report for selected data ");
 			long vehicleId = Long.parseLong(vehicleIdString); 
@@ -56,7 +64,7 @@ public class MapReportController extends SimpleFormController {
 			if(vehiclesList.size()!=0){
 				model.addObject("vehiclesList", vehiclesList);	
 			}
-			List<TrackHistoryEntity> trackData = new TrackHistoryDaoImpl().selectBetweenDates(vehicleId, startDate, toStart);
+			List<TrackHistoryEntity> trackData = new TrackHistoryDaoImpl().selectBetweenDates(vehicleId, startDate, endDate);
 			if(trackData.size()!=0){
 				//logger.debug("You are adding some data here ....");
 				model.addObject("trackData", trackData);	

@@ -60,31 +60,11 @@ public class IdleReportController extends SimpleFormController {
 
 				Date endDate = simpleDateFormat.parse(endDateString);
 				logger.debug("No.of trips"+tripsList.size()+" for Vehicle Id : "+vehicleIdString);
-				//for (int t = 0; t < tripsList.size(); t++) {
-					//TripsEntity trip = tripsList.get(t);
-
-					List<IdlePoints> idlePointResultset = idleDaoImpl.selectAllIdlePointsBetweenDatesWithLimit(3, startDate,endDate);
-					logger.debug("Finally idle points size is ::::::: "+idlePointResultset.size());
-					model.addObject("idlPointsData", idlePointResultset);
-
-					/*for (int j = 0; j < idlePointResultset.size(); j++) {
-					IdlePoints idlePoints = idlePointResultset.get(j);
-
-					data = new Dataset();
-					String actualendTime = DateUtils.adjustToClientTime(localTimeZone, idlePoints.getEndtime());
-					data.put("location", idlePoints.getIdleLocation().getFirstPoint().y+":"+idlePoints.getIdleLocation().getFirstPoint().x);
-					String actualstartTime = DateUtils.adjustToClientTime(localTimeZone, idlePoints.getStarttime());
-					data.put("startdate", actualstartTime);
-					data.put("lat", idlePoints.getIdleLocation().getFirstPoint().getY());
-					data.put("lon", idlePoints.getIdleLocation().getFirstPoint().getX());
-					data.put("vehiclename",vehicle.getDisplayName());
-					Long startTimeInMillis = DateUtils.adjustToLocalTime(idlePoints.getStarttime(), clientTime).getTime();
-					Long endTimeInMillis = DateUtils.adjustToLocalTime(idlePoints.getEndtime(), clientTime).getTime();
-					String time=DateUtils.formatTimeDifference(endTimeInMillis,startTimeInMillis);
-					data.put("time",time);
-					idlePointsData.add((Dataset) data);
-				}*/
-			//	}
+				List<IdlePoints> idlePointResultset = idleDaoImpl.selectAllIdlePointsBetweenDatesWithLimit(3, startDate,endDate);
+				logger.debug("Finally idle points size is ::::::: "+idlePointResultset.size());
+				model.addObject("idlPointsData", idlePointResultset);
+				model.addObject("from", startDateString);
+				model.addObject("to", endDateString);
 			} 
 		}catch (ParseException e) {
 			// TODO Auto-generated catch block

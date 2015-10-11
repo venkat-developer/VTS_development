@@ -140,7 +140,7 @@
 					<!-- content goes here -->
 
 					<div class="large-14 columns" style="height: 100%">
-						
+
 						<!--- Table Starts here--->
 						<div class="large-12 columns">
 							<br>
@@ -149,9 +149,9 @@
 								<form>
 									<table id="dataTable" class="mytable filterable sortable"
 										cellspacing="0" width="100%">
-										<c:if test="${not empty reportSet}">
+										<c:if test="${not empty vehicleStatsList}">
 											<caption>
-												<strong>Transaction Reports ${from} - ${to} </strong>
+												<strong>Status Reports ${from} - ${to} </strong>
 												<%-- <br>
 											<c:if test="${not empty idlPointsData}">
 											<strong>Filter Data here
@@ -159,19 +159,28 @@
 											</c:if> --%>
 											</caption>
 										</c:if>
-										<!-- <thead>
+										<c:if test="${not empty vehicleStatsList}">
+										<thead>
 											<tr>
-												<c:forEach items="${tableColumnNamesList}" var="columnName">
-													<th title="Click to Sort"><strong
-														style="color: #159faa">${columnName}</strong></th>
-
-												</c:forEach>
+													<th title="Click to Sort"><strong style="color: #159faa">S.No</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">VehicleName</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Speed</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Avg.Speed</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Distance</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Start Latitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Start Longitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Start Location</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">End Latitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">End Longitude</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">End Location</strong></th>
+													<th title="Click to Sort"><strong style="color: #159faa">Idle Duration</strong></th>
 											</tr>
-										</thead> -->
+										</thead>
+										</c:if>
 										<%
 											int count = 0;
 										%>
-										<c:forEach items="${idlPointsData}" var="idlePoint">
+										<c:forEach items="${vehicleStatsList}" var="stasticsData">
 											<tr>
 												<%
 													count = count + 1;
@@ -181,12 +190,19 @@
 														out.println(count);
 													%>
 												</td>
-												
-													<td>${idlePoint.starttime}</td>
-													<td>${idlePoint.endtime}</td>
-													<td>${idlePoint.idleLocation.getFirstPoint().getX()}</td>
-													<td>${idlePoint.idleLocation.getFirstPoint().getY()}</td>
-													<td>${idlePoint.locationName}</td>
+
+												<td>${stasticsData.vehicleName}</td>
+												<td>${stasticsData.speed}</td>
+												<td>${stasticsData.avgspeed}</td>
+												<td>${stasticsData.distance}</td>
+												<td>${stasticsData.startLatitude}</td>
+												<td>${stasticsData.startLongitude}</td>
+												<td>${stasticsData.startLocation}</td>
+												<td>${stasticsData.endLatitude}</td>
+												<td>${stasticsData.endLongitude}</td>
+												<td>${stasticsData.endLocation}</td>
+												<td>${stasticsData.idleDuration}</td>
+
 											</tr>
 										</c:forEach>
 

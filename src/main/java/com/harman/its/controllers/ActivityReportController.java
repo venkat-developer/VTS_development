@@ -3,13 +3,25 @@ package com.harman.its.controllers;
 
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.postgis.Geometry;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
+
+import com.harman.its.dao.impl.TrackHistoryDaoImpl;
+import com.harman.its.entity.ActivityReportEntity;
+import com.harman.its.entity.TrackHistoryEntity;
+import com.harman.its.utils.CustomCoordinates;
 
 
 
@@ -34,14 +46,79 @@ public class ActivityReportController extends SimpleFormController {
 		String toHrs=request.getParameter("thrs");
 		String toMin=request.getParameter("tmin");
 		String toSec=request.getParameter("tsec");
-		String startDate = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
-		String toStart = toDate+" "+toHrs+":"+toMin+":"+toSec;
-		logger.debug("Start Date : "+startDate+" , End Date : "+toStart);
-		
+		String startDateString = "2010-10-02 "+fromHrs+":"+fromMin+":"+fromSec;
+		String endDateString = toDate+" "+toHrs+":"+toMin+":"+toSec;
+		logger.debug("Start Date : "+startDateString+" , End Date : "+endDateString);
+
 		String vehicleIdString =request.getParameter("vehicleId");
 		logger.debug("Vehicle Id is "+vehicleIdString);
-		if(vehicleIdString!=null){
-			
+		String intervalString=request.getParameter("interval");
+		int interval =0;
+		try {
+			if(intervalString != null){
+				interval = Integer.parseInt(intervalString);	
+			}
+			if(vehicleIdString!=null){
+				long vehicleId = Long.parseLong(vehicleIdString); 
+				TrackHistoryDaoImpl trackHistoryDaoImpl = new TrackHistoryDaoImpl();
+				List<ActivityReportEntity> acivityReportList = new ArrayList<ActivityReportEntity>();
+				List<TrackHistoryEntity> trackHistoryResultset;
+
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+				Date startDate = simpleDateFormat.parse(startDateString);
+				Date endDate = simpleDateFormat.parse(endDateString);
+
+				if(interval != 0 ){
+					trackHistoryResultset = trackHistoryDaoImpl.selectBetweenDatesIntervalNotZero(vehicleId, startDate, endDate,interval);
+				}else{
+					trackHistoryResultset = trackHistoryDaoImpl.selectBetweenDates(vehicleId, startDate,endDate);
+				}
+
+
+				List<TrackHistoryEntity> filteredResultSet = new ArrayList<TrackHistoryEntity>();
+				float distance = 0.0F;
+
+				/** If interval is zero we need fetch only first fifteen between the given start and end dated **/
+				TrackHistoryEntity prevTrackHistory = null;
+				for (int j = 0; j <trackHistoryResultset.size(); j++) {
+					Geometry points = trackHistoryResultset.get(j).getLocation();
+					if(prevTrackHistory != null){
+						Geometry prevPoints = prevTrackHistory.getLocation();
+						logger.debug("Lat1, Lng1 : "+prevPoints.getFirstPoint().getY()+", "+prevPoints.getFirstPoint().getX()+
+								" Lat2, Lng2 : "+points.getFirstPoint().getY()+", "+points.getFirstPoint().getX());
+						float calculatedDistance = (float) CustomCoordinates.distance(prevPoints.getFirstPoint().getY(), prevPoints.getFirstPoint().getX(),
+								points.getFirstPoint().getY(), points.getFirstPoint().getX());
+						trackHistoryResultset.get(j).setDistance((float)(calculatedDistance + (0.1*calculatedDistance)));
+					}
+					prevTrackHistory = trackHistoryResultset.get(j);
+					logger.debug("Calculated distance : "+trackHistoryResultset.get(j).getDistance());
+					distance += trackHistoryResultset.get(j).getDistance();
+					logger.debug("Cumulative distance : "+distance);
+					trackHistoryResultset.get(j).setDistance(distance);
+					filteredResultSet.add(trackHistoryResultset.get(j));
+				}
+				DecimalFormat df = new DecimalFormat("0.##");
+				/** Data Extraction **/
+				for (int i=0; i<filteredResultSet.size(); i++) {
+					TrackHistoryEntity tHistory = filteredResultSet.get(i);
+					ActivityReportEntity report = new ActivityReportEntity();
+					report.setLocation(tHistory.getLocation().getFirstPoint().y+":"+tHistory.getLocation().getFirstPoint().x);
+					report.setOccurredAt(tHistory.getOccurredat());
+					Geometry points = tHistory.getLocation();
+
+					report.setLatitude(points.getFirstPoint().getY());
+					report.setLongitude(points.getFirstPoint().getX());
+					report.setSpeed(df.format(tHistory.getSpeed()));
+					report.setDistance(df.format(tHistory.getDistance()));
+					acivityReportList.add(report);
+				}
+				model.addObject("activityReportList", acivityReportList);
+				model.addObject("from", startDateString);
+				model.addObject("to", endDateString);
+			}
+		}catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return model;
 	}
