@@ -54,7 +54,7 @@
 </head>
 
 <body>
-		<form action="/HITS-UI/activity?reportType=idle" method="post"	name="filters" id="filters">
+		<form action="/HITS-UI/activity.do?reportType=idle" method="post" name="filters" id="filters">
 		<div class="large-2 push-1 columns" style="color:black">
 			<select name="vehicleId" style="padding: 0px;">
 			<c:forEach items='${vehiclesList}' var='vehicleData'> 
@@ -86,7 +86,6 @@
 		<font color="white">Welcome	! </font>
 		<font color="#1AB3BD"> ${userName} &nbsp;</font> 
 		<font color="white">| last logged in :${lastLogin}</font>
-		<a	href="/HITS-UI/login.do?isSignOut=true"> <font color="white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Sign Out</font></a>
 		</strong>
 	</label>
 	<div class="large-12 columns small-3" style="height: 17%;">
@@ -97,7 +96,7 @@
 						</div>
 						<!-- From Hours Start ...-->
 						<div class="large-1 columns fhrs" style="margin-top: 5px;">
-													 <select name="fhrs" id="fhrs" style="color: black;" required>
+													 <select name="fhrs" id="fhrs" style="color: black;padding: 2px" required>
 														<option value="00" disabled selected
 															style="display: none;">00</option>
 														<%
@@ -129,7 +128,7 @@
 						<!-- From Hours End ...-->
 						<!-- From Minutes Start ...-->
 						<div class="large-1 columns fmins" style="margin-top: 5px;">
-													<select name="fmin" id="fmin" style="color: black;" required>
+													<select name="fmin" id="fmin" style="color: black;padding: 2px" required>
 														<option value="00" disabled selected
 															style="display: none;">00</option>
 														<%
@@ -161,7 +160,7 @@
 						<!-- From Minutes End  ...-->
 						<!-- From Seconds Start ...-->
 						<div class="large-1 columns fsecs" style="margin-top: 5px;">
-													 <select name="fsec" id="fsec" style="color: black;" required>
+													 <select name="fsec" id="fsec" style="color: black;padding: 2px" required>
 														<option value="00" disabled selected
 															style="display: none;">00</option>
 														<%
@@ -195,7 +194,7 @@
 							<input type="date" name="to" id="to" style="width: 260px;" required>
 						</div>
 							<div class="large-1 columns" style="margin-top: 5px;">
-									<select name="thrs" id="thrs" style="color: black;">
+									<select name="thrs" id="thrs" style="color: black;padding: 2px">
 														<option value="23" disabled selected
 															style="display: none;">23</option>
 														<%
@@ -225,7 +224,7 @@
 													</select>
 							</div>
 							<div class="large-1 columns" style="margin-top: 5px;">
-													<select name="tmin" id="tmin" style="color: black;">
+													<select name="tmin" id="tmin" style="color: black;padding: 2px">
 														<option value="59" disabled selected
 															style="display: none;">59</option>
 														<%
@@ -255,7 +254,7 @@
 													</select>
 							</div>
 							<div class="large-1 columns" style="margin-top: 5px; ">
-													<select name="tsec" id="tsec" style="color: black;">
+													<select name="tsec" id="tsec" style="color: black;padding: 2px">
 														<option value="59" disabled selected
 															style="display: none;">59</option>
 														<%

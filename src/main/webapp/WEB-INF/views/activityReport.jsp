@@ -144,7 +144,7 @@
 						<!--- Table Starts here--->
 						<div class="large-12 columns">
 							<br>
-							<div style="width: 100%; height: 500px; overflow: scroll;">
+							<div style="width: 100%; height: 500px; height:500px;border: solid;border-color: gainsboro;margin:0px">
 
 								<form>
 									<table id="dataTable" class="mytable filterable sortable"

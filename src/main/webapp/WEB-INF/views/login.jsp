@@ -18,7 +18,7 @@
 	<!-- Header part-->
 	<div id="header"></div><br>
 	<!-- Body part-->
-	<div class="row" style="opacity: 30;height:585px;border: solid;border-color: gainsboro;margin:0px;padding:10px">
+	<div class="row" style="opacity: 30;height:585px;border: solid;border-color: gainsboro;margin:0px;padding:10px;margin-left: 141px">
 		<!--Slider part-->
 		
 		<!-- Login part-->

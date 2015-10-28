@@ -21,12 +21,14 @@
 			<li><a href="/HITS-UI/home.do">Home</a></li>
 			<li><a href="/HITS-UI/live.do">Live Data</a></li>
 			<li><label>Reports</label></li>
-			<li><a href="/HITS-UI/track.do">Trck</a></li>
-			<li><a href="/HITS-UI/idle.do">Idle</a></li>
-			<li><a href="/HITS-UI/stats.do">Stastics</a></li>
+			<li><a href="/HITS-UI/track.do?reportType=track">Trck</a></li>
+			<li><a href="/HITS-UI/idle.do?reportType=idle">Idle</a></li>
+			<li><a href="/HITS-UI/stats.do?reportType=stats">Stastics</a></li>
 			<!--  <li><a href="/HITS-UI/driverhome.do">Driver</a></li> -->
-			<li><a href="/HITS-UI/activity.do">Activity</a></li>
-			<li><a href="/HITS-UI/inputValidate.do">Settings</a></li>
+			<li><a href="/HITS-UI/activity.do?reportType=activity">Activity</a></li>
+			<li><a href="/HITS-UI/inputValidate.do?reportType=activity">Settings</a></li>
+			<li><a href="/HITS-UI/login.do?isSignOut=true">Sign Out</a></li>
+
 		</ul>
 	</aside>
 
