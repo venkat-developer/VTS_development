@@ -28,6 +28,7 @@ public class MainController extends SimpleFormController {
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response) throws ClassNotFoundException, SQLException{
 		ModelAndView model=new ModelAndView("home");
 		String requestType=request.getParameter("type");
+		String reportType=request.getParameter("reportType");
 		if(requestType != null){
 			if(requestType.equalsIgnoreCase("Header")){
 				model = new ModelAndView("header");
@@ -45,6 +46,23 @@ public class MainController extends SimpleFormController {
 					logger.debug("Vehicles List size is  "+vehiclesList.size());
 					model.addObject("vehiclesList", vehiclesList);	
 				}
+				logger.debug("reportType is .................. "+reportType);
+				if(reportType!=null){
+					if(reportType.equalsIgnoreCase("track")){
+						logger.debug("ReportType is "+reportType);
+						model.addObject("reportType", "track");
+					}else if(reportType.equalsIgnoreCase("idle")){
+						logger.debug("ReportType is "+reportType);
+						model.addObject("reportType", "idle");
+					}else if(reportType.equalsIgnoreCase("stats")){
+						logger.debug("ReportType is "+reportType);
+						model.addObject("reportType", "stats");
+					}else if(reportType.equalsIgnoreCase("activity")){
+						logger.debug("ReportType is "+reportType);
+						model.addObject("reportType", "activity");
+					}	
+				}
+
 			}else if(requestType.equalsIgnoreCase("map")){
 				model=new ModelAndView("map");
 			}

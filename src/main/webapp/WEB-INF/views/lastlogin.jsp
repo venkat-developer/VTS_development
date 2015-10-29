@@ -54,7 +54,7 @@
 </head>
 
 <body>
-		<form action="/HITS-UI/activity.do?reportType=idle" method="post" name="filters" id="filters">
+		<form action="/HITS-UI/${reportType}.do" method="post" name="filters" id="filters">
 		<div class="large-2 push-1 columns" style="color:black">
 			<select name="vehicleId" style="padding: 0px;">
 			<c:forEach items='${vehiclesList}' var='vehicleData'> 

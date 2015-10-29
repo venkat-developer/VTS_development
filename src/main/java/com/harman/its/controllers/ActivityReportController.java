@@ -46,7 +46,7 @@ public class ActivityReportController extends SimpleFormController {
 		String toHrs=request.getParameter("thrs");
 		String toMin=request.getParameter("tmin");
 		String toSec=request.getParameter("tsec");
-		String startDateString = "2010-10-02 "+fromHrs+":"+fromMin+":"+fromSec;
+		String startDateString = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
 		String endDateString = toDate+" "+toHrs+":"+toMin+":"+toSec;
 		logger.debug("Start Date : "+startDateString+" , End Date : "+endDateString);
 
@@ -64,7 +64,7 @@ public class ActivityReportController extends SimpleFormController {
 				List<ActivityReportEntity> acivityReportList = new ArrayList<ActivityReportEntity>();
 				List<TrackHistoryEntity> trackHistoryResultset;
 
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				Date startDate = simpleDateFormat.parse(startDateString);
 				Date endDate = simpleDateFormat.parse(endDateString);
 
@@ -120,6 +120,7 @@ public class ActivityReportController extends SimpleFormController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addObject("reportType", "activity");
 		return model;
 	}
 }

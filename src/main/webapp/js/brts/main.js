@@ -30,8 +30,11 @@ $(function(){
    $('#header').load("/HITS-UI/main.do?type=Header");
    $('#navbar').load("/HITS-UI/main.do?type=SideBar");  
    $('#footer').load("/HITS-UI/main.do?type=Footer");
-   $('#lastlogin').load("/HITS-UI/main.do?type=LastLogin");
-   $('#map').load("/HITS-UI/main.do?type=map");
+   $('#track').load("/HITS-UI/main.do?type=LastLogin&reportType=track");
+   $('#idle').load("/HITS-UI/main.do?type=LastLogin&reportType=idle");
+   $('#stats').load("/HITS-UI/main.do?type=LastLogin&reportType=stats");
+   $('#activity').load("/HITS-UI/main.do?type=LastLogin&reportType=activity");
+   $('#map').load("/HITS-UI/main.do?type=LastLogin&reportType=map");
 });
 
     

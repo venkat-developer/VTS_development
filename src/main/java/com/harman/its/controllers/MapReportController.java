@@ -51,11 +51,7 @@ public class MapReportController extends SimpleFormController {
 
 		String vehicleIdString =request.getParameter("vehicleId");
 		logger.debug("Vehicle Id is "+vehicleIdString);
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
-		Date startDate = simpleDateFormat.parse(startDateString);
-
-		Date endDate = simpleDateFormat.parse(endDateString);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		if(vehicleIdString!=null){
 			logger.debug("vehicleIdString is not null hence generate report for selected data ");
 			long vehicleId = Long.parseLong(vehicleIdString); 
@@ -64,6 +60,11 @@ public class MapReportController extends SimpleFormController {
 			if(vehiclesList.size()!=0){
 				model.addObject("vehiclesList", vehiclesList);	
 			}
+			
+			Date startDate = simpleDateFormat.parse(startDateString);
+
+			Date endDate = simpleDateFormat.parse(endDateString);
+			
 			List<TrackHistoryEntity> trackData = new TrackHistoryDaoImpl().selectBetweenDates(vehicleId, startDate, endDate);
 			if(trackData.size()!=0){
 				//logger.debug("You are adding some data here ....");
@@ -74,7 +75,7 @@ public class MapReportController extends SimpleFormController {
 			List<TrackHistoryEntity> trackData =new ArrayList<TrackHistoryEntity>();
 			model.addObject("trackData", trackData);
 		}
-		
+		model.addObject("reportType", "track");
 		
 		return model;
 	}

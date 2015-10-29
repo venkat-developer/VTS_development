@@ -98,6 +98,7 @@
 							<a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
 						</section>
 						<div id="lastlogin"></div>
+						<div id="activity"></div>
 					</nav>
 					<div id="navbar"></div>
 					<aside class="right-off-canvas-menu">

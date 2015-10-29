@@ -81,6 +81,7 @@ public class LiveDatController extends SimpleFormController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addObject("reportType", "live");
 		return model.addObject("tripDeatils", liveFinalResult);
 	}
 }

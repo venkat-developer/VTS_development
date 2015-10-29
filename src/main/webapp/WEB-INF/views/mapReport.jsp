@@ -112,6 +112,7 @@ function addMapMarkers(data){
 				<h1 class="title">Menu</h1>
 				</section>
 				<div id="lastlogin"></div>
+				<div id="track"></div>
 				</nav>
 				<div id="navbar"></div>
 				<section class="main-section"> <!-- content goes here -->

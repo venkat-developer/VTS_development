@@ -57,7 +57,7 @@ public class VehilceStatController extends SimpleFormController {
 		String vehicleIdString =request.getParameter("vehicleId");
 		logger.debug("Vehicle Id is "+vehicleIdString);
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 		if(vehicleIdString!=null){
 			Date startDate = simpleDateFormat.parse(startDateString);
@@ -131,6 +131,7 @@ public class VehilceStatController extends SimpleFormController {
 			model.addObject("from", startDateString);
 			model.addObject("to", endDateString);
 			model.addObject("vehicleStatsList", statsEntityList);
+			model.addObject("reportType", "stats");
 		}
 		return model;
 	}
