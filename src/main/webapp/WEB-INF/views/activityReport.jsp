@@ -97,8 +97,9 @@
 						<section class="right-small">
 							<a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
 						</section>
+						<form action="/HITS-UI/activity.do" method="post" name="filters" id="filters">
 						<div id="lastlogin"></div>
-						<div id="activity"></div>
+						</form>
 					</nav>
 					<div id="navbar"></div>
 					<aside class="right-off-canvas-menu">
@@ -145,7 +146,7 @@
 						<!--- Table Starts here--->
 						<div class="large-12 columns">
 							<br>
-							<div style="width: 100%; height: 500px; height:500px;border: solid;border-color: gainsboro;margin:0px">
+							<div style="width: 100%; height: 500px; height:500px;border: solid;border-color: gainsboro;margin:0px;overflow-y: scroll">
 
 								<form>
 									<table id="dataTable" class="mytable filterable sortable"

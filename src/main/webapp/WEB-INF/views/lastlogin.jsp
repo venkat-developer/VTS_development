@@ -54,7 +54,7 @@
 </head>
 
 <body>
-		<form action="/HITS-UI/${reportType}.do" method="post" name="filters" id="filters">
+		
 		<div class="large-2 push-1 columns" style="color:black">
 			<select name="vehicleId" style="padding: 0px;">
 			<c:forEach items='${vehiclesList}' var='vehicleData'> 
@@ -286,8 +286,7 @@
 							<div class="large-1 columns" style="margin-top:0px;width:90px;">
 							
 							</div>
-		</form>
-												
+											
 			</div>
 										<div class="columns toread" style="display: none">
 												<div class="large-6 columns">

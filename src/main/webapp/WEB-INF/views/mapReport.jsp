@@ -111,7 +111,9 @@ function addMapMarkers(data){
 				</section> <section class="middle tab-bar-section">
 				<h1 class="title">Menu</h1>
 				</section>
-				<div id="lastlogin"></div>
+				<form action="/HITS-UI/track.do" method="post" name="filters" id="filters">
+						<div id="lastlogin"></div>
+						</form>
 				<div id="track"></div>
 				</nav>
 				<div id="navbar"></div>
