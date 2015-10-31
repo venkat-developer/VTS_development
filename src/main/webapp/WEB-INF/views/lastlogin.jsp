@@ -68,11 +68,11 @@
 		<div class="large-2 push-1 columns">
 			<ul class="button-group round toggle" data-toggle="buttons-radio">
 				<li>
-					<input type="radio" id="r1" name="r-group" data-toggle="button" value="today">
+					<input type="radio" id="r1" name="timefilter" data-toggle="button" value="today">
 					<label class="button" for="r1">Today</label>
 				</li>
 				<li>
-					<input type="radio" id="r3" name="r-group" data-toggle="button" value="custom">
+					<input type="radio" id="r3" name="timefilter"  data-toggle="button" value="custom">
 					<label class="button" for="r3">Custom</label>
 				</li>
 			</ul>
