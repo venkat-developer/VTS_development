@@ -29,6 +29,7 @@
 				/idle.* idleController
 				/stats.* statsController
 				/activity.* activityController
+				/reportsgen.* reportsController
 				<!-- /busdetailshome.* busDeatilsController -->
 			</value>
 		</property>
@@ -90,6 +91,8 @@
 	<bean name="activityController" class="com.harman.its.controllers.ActivityReportController">
 		
 	</bean>
+	
+	<bean name="reportsController" class="com.harman.its.controllers.ReportGeneration"/>
 	
 <!--	<bean name="reportEditableController" class="com.harman.its.controllers.ReportEditableController">
 		<property name="access">

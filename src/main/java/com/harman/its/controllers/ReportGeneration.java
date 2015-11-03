@@ -1,9 +1,11 @@
-/*package com.harman.its.controllers;
+package com.harman.its.controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,32 +17,33 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import com.harman.its.entity.ReportGenerateEntity;
 import com.harman.its.utils.ExportUtils;
+import com.harman.its.utils.ReportGenerateUtils;
 import com.harman.its.utils.SessionUtils;
 
 
 
-*//**
+/**
  * 
  * @author HDamodaran
  *
- *//*
+ */
 public class ReportGeneration extends SimpleFormController {
 	private static final int BUFFER_SIZE = 4096;
 
-	Logger logger = Logger.getLogger(BusStopsUploadController.class);
+	Logger logger = Logger.getLogger(ReportGeneration.class);
 
 	private List<String> access;
 
-	*//**
+	/**
 	 * @return the access
-	 *//*
+	 */
 	public List<String> getAccess() {
 		return access;
 	}
 
-	*//**
+	/**
 	 * @param access the access to set
-	 *//*
+	 */
 	public void setAccess(List<String> access) {
 		this.access = access;
 	}
@@ -48,15 +51,15 @@ public class ReportGeneration extends SimpleFormController {
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response){
 		ReportGenerateEntity reportEntity;
 		ModelAndView model ;
-		if(!AuthenticationManager.validateAccess(getAccess())){
+		/*if(!AuthenticationManager.validateAccess(getAccess())){
 			return new ModelAndView("home");
-		}
+		}*/
 		model=new ModelAndView("report");
 		logger.info("You are in report generation Controller");
 		String reportOption=request.getParameter("reportOption");
-		*//**
+		/**
 		 * Based on the reportOption value the operation will be performed
-		 *//*
+		 */
 		logger.info("reportOption value "+reportOption);
 		String fileHeader=request.getParameter("heading");
 		// This settingFileOf variable gives the 
@@ -71,8 +74,10 @@ public class ReportGeneration extends SimpleFormController {
 		String toHrs=request.getParameter("thrs");
 		String toMin=request.getParameter("tmin");
 		String toSec=request.getParameter("tsec");
-		String startDate = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
-		String toStart = toDate+" "+toHrs+":"+toMin+":"+toSec;
+		String vehicleId=request.getParameter("vehicleId");
+		
+		String startDateString = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
+		String endDateString = toDate+" "+toHrs+":"+toMin+":"+toSec;
 		model.addObject("from", fromDate);
 		model.addObject("to", toDate);
 		model.addObject("fhrs",fromHrs);
@@ -81,20 +86,15 @@ public class ReportGeneration extends SimpleFormController {
 		model.addObject("thrs", toHrs);
 		model.addObject("tmin", toMin);
 		model.addObject("tsec",toSec);
-		//For Transaction Reports
-		if(fileHeader.equalsIgnoreCase("transaction")){
-			model=new ModelAndView("transactions");
-			model.addObject("heading","Transaction");	
-			model.addObject("operatortype", operatorName);
-			model.addObject("reportType", reportType);
-		}else if(fileHeader.equalsIgnoreCase("alerts")){
-			model=new ModelAndView("alertReport");
-			model.addObject("heading","Alerts");
-		}
 		//Getting the value for Report Entity
 		try {
 			ReportGenerateUtils report =new ReportGenerateUtils();
-			reportEntity = report.getReportEntity(operatorName,fileHeader,reportType,startDate,toStart);
+			long vehicleIdLong = Long.parseLong(vehicleId);
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date startDate = simpleDateFormat.parse(startDateString);
+			Date endDate = simpleDateFormat.parse(endDateString);
+
+			reportEntity = report.getReportEntity(vehicleIdLong,fileHeader,reportType,startDate,endDate);
 			ExportUtils exportUtils = new ExportUtils();
 			String filePath = exportUtils.exportData(reportOption,reportEntity, reportType);
 			if(filePath!=null){
@@ -171,4 +171,4 @@ public class ReportGeneration extends SimpleFormController {
 		inputStream.close();
 		outStream.close();
 	}
-}*/
+}

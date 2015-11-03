@@ -19,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.harman.its.constants.ReportOptions;
 import com.harman.its.entity.ReportGenerateEntity;
+import com.harman.its.entity.TrackHistoryEntity;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -51,11 +52,11 @@ public class ExportUtils {
 			break;
 		case CSV:
 			logger.info("Export - Csv format");
-			fileCreatedPath = convertToCSV(reportEntity, reportType);
+			//fileCreatedPath = convertToCSV(reportEntity, reportType);
 			break;
 		case EXCEL:
 			logger.info("Export - Excel Format");
-			fileCreatedPath = convertToExcel(reportEntity, reportType);
+			//fileCreatedPath = convertToExcel(reportEntity, reportType);
 			break;	
 		case PRINT:
 			logger.info("Printing the document");
@@ -100,7 +101,7 @@ public class ExportUtils {
 			pdfReport.add(Chunk.NEWLINE);		
 			pdfReport.add(Chunk.NEWLINE);		
 			/*Getting the name and data list from the report Entity*/
-			List<String[]> reportDataList = reportEntity.getReportDataList();
+			List<TrackHistoryEntity> reportDataList = reportEntity.getReportDataList();
 			List<String> columnNameList =reportEntity.getTableColumnNamesList();
 			/*Setting the no of columns in the table*/
 			PdfPTable pdfTable=new PdfPTable(reportEntity.getTotalNoOfColumns());
@@ -117,111 +118,35 @@ public class ExportUtils {
 			/*Iterating and getting the report data*/
 			if(reportEntity.getReportDataList() != null && reportEntity.getReportDataList().size() > 0){
 				int serialNumber=0;
-				float totalTransactionAmount = 0;
-				int totalPassangers = 0;
-				int totalTicketsIssued = 0;
-				for(String[] reportDataValues : reportDataList){
+				for(TrackHistoryEntity reportDataValues : reportDataList){
 					serialNumber++;
 					pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(serialNumber)));
 					pdfTable.addCell(pdfTableCell);
-					for(int noOfColumns=0;noOfColumns<reportDataValues.length;noOfColumns++){
-						pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues[noOfColumns]));
-						pdfTable.addCell(pdfTableCell);
-						if(reportType.equalsIgnoreCase("detailed")){
-							switch (noOfColumns) {
-							case 13:
-								totalTransactionAmount += Float.parseFloat(reportDataValues[noOfColumns]);
-								break;
-							case 19:
-								totalPassangers += Integer.parseInt(reportDataValues[noOfColumns]);
-								break;
-							case 20:
-								totalTicketsIssued += Integer.parseInt(reportDataValues[noOfColumns]);
-								break;
-							default: 
-								break;
-							}
-						} else if(reportType.equalsIgnoreCase("summary")){
-							switch (noOfColumns) {
-							case 5:
-								totalTransactionAmount += Float.parseFloat(reportDataValues[noOfColumns]);
-								break;
-							case 6:
-								totalPassangers += Integer.parseInt(reportDataValues[noOfColumns]);
-								break;
-							case 7:
-								totalTicketsIssued += Integer.parseInt(reportDataValues[noOfColumns]);
-								break;
-							default: 
-								break;
-							}
-						}
-					}
-				}
+					pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues.getSpeed()+""));
+					pdfTable.addCell(pdfTableCell);
+					pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues.getDistance()+""));
+					pdfTable.addCell(pdfTableCell);
 
+					pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues.getLocation().getFirstPoint().getX()+""));
+					pdfTable.addCell(pdfTableCell);
 
-				for(int i = 0; i<columnNameList.size(); i++){
-					if(reportType.equalsIgnoreCase("detailed")){
-						//TODO : Create the Transaction entity and get the column values to be summed from the entity 
-						/*
-						 *Transaction Amount Column : 13
-						 *No of Passengers : 19
-						 *No of Tickets : 20
-						 */
-						switch (i) {
-						case 14:
-							pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(totalTransactionAmount)));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						case 20:
-							pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(totalPassangers)));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						case 21:
-							pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(totalTicketsIssued)));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						default: 
-							pdfTableCell=new PdfPCell(new Phrase(7, ""));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						}
-					} else if(reportType.equalsIgnoreCase("summary")){
-						//TODO : Create the Transaction entity and get the column values to be summed from the entity 
-						/*
-						 *Transaction Amount Column : 5
-						 *No of Passengers : 6
-						 *No of Tickets : 7
-						 */
-						switch (i) {
-						case 6:
-							pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(totalTransactionAmount)));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						case 7:
-							pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(totalPassangers)));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						case 8:
-							pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(totalTicketsIssued)));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						default: 
-							pdfTableCell=new PdfPCell(new Phrase(7, ""));
-							pdfTable.addCell(pdfTableCell);
-							break;
-						}
-					}
+					pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues.getLocation().getFirstPoint().getX()+""));
+					pdfTable.addCell(pdfTableCell);
+
+					pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues.getLocation().getFirstPoint().y+":"+reportDataValues.getLocation().getFirstPoint().x));
+					pdfTable.addCell(pdfTableCell);
+
+					pdfTableCell=new PdfPCell(new Phrase(7, reportDataValues.getOccurredat()+""));
+					pdfTable.addCell(pdfTableCell);
 				}
-			}
-			else{
+			}else{
 				logger.error("Error in generating the PDF file");
 				return null;
 			}
 			/*Attaching the pdfTable to the document*/
 			pdfReport.add(pdfTable);
 			pdfReport.close();
-		} catch (FileNotFoundException e) {
+		}catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			logger.error("File Not Found Exception while generating report in pdf "+e);
 		} catch (DocumentException e) {
@@ -243,8 +168,8 @@ public class ExportUtils {
 		File csvFile=null;
 		try {
 			logger.info("Converting to the CSV file in ReportGenerateUtils");
-			/*Getting the name and data list from the report Entity*/
-			List<String[]> reportDataList = reportEntity.getReportDataList();
+			//Getting the name and data list from the report Entity
+			List<TrackHistoryEntity> reportDataList = reportEntity.getReportDataList();
 			List<String> columnNameList =reportEntity.getTableColumnNamesList();
 			/**
 			 * Creating the new csv File in the temp directory
@@ -260,7 +185,7 @@ public class ExportUtils {
 				bw.write(csvFileData.toString());
 				bw.write("\n");
 				csvFileData=new StringBuilder();
-				/*Appending the column Name to the csvFile*/
+				//Appending the column Name to the csvFile
 				for(String columnName : columnNameList){
 					csvFileData.append(columnName);
 					csvFileData.append(",");
@@ -268,111 +193,28 @@ public class ExportUtils {
 				bw.write(csvFileData.toString());
 				bw.write("\n");
 				int serialNumber=0;
-				/*Appending the data to the csv report*/
+				//Appending the data to the csv report
 				if(reportEntity.getReportDataList() != null && reportEntity.getReportDataList().size() > 0){
-					/*Reading the each row values*/
-					float totalTransactionAmount = 0;
-					int totalPassangers = 0;
-					int totalTicketsIssued = 0;
-					for(String[] reportDataValues : reportDataList){
+					//Reading the each row values
+					for(TrackHistoryEntity reportDataValues : reportDataList){
 						csvFileData=new StringBuilder();
 						serialNumber++;
 						csvFileData.append(serialNumber);
 						csvFileData.append(",");
-						/*Reading each cell value*/
-						for(int noOfColumns=0;noOfColumns<reportDataValues.length;noOfColumns++){
-							csvFileData.append(reportDataValues[noOfColumns]);
-							csvFileData.append(",");
-							if(reportType.equalsIgnoreCase("detailed")){
-								switch (noOfColumns) {
-								case 13:
-									totalTransactionAmount += Float.parseFloat(reportDataValues[noOfColumns]);
-									break;
-								case 19:
-									totalPassangers += Integer.parseInt(reportDataValues[noOfColumns]);
-									break;
-								case 20:
-									totalTicketsIssued += Integer.parseInt(reportDataValues[noOfColumns]);
-									break;
-								default: 
-									break;
-								}
-							} else if(reportType.equalsIgnoreCase("summary")){
-								switch (noOfColumns) {
-								case 5:
-									totalTransactionAmount += Float.parseFloat(reportDataValues[noOfColumns]);
-									break;
-								case 6:
-									totalPassangers += Integer.parseInt(reportDataValues[noOfColumns]);
-									break;
-								case 7:
-									totalTicketsIssued += Integer.parseInt(reportDataValues[noOfColumns]);
-									break;
-								default: 
-									break;
-								}
-							}
-						}
-						bw.write(csvFileData.toString());
-						bw.write("\n");
-					}
-
-					if(reportType.equalsIgnoreCase("detailed")){
-						//TODO : Create the Transaction entity and get the column values to be summed from the entity 
-						/*
-						 *Transaction Amount Column : 13
-						 *No of Passengers : 19
-						 *No of Tickets : 20
-						 */
-						csvFileData=new StringBuilder();
-						for(int i = 0; i<columnNameList.size(); i++){
-							switch (i) {
-							case 14:
-								csvFileData.append(totalTransactionAmount);
-								csvFileData.append(",");
-								break;
-							case 20:
-								csvFileData.append(totalPassangers);
-								csvFileData.append(",");
-								break;
-							case 21:
-								csvFileData.append(totalTicketsIssued);
-								csvFileData.append(",");
-								break;
-							default: 
-								csvFileData.append(",");
-								break;
-							}
-						}
-						bw.write(csvFileData.toString());
-						bw.write("\n");
-					} else if(reportType.equalsIgnoreCase("summary")){
-						//TODO : Create the Transaction entity and get the column values to be summed from the entity 
-						/*
-						 *Transaction Amount Column : 5
-						 *No of Passengers : 6
-						 *No of Tickets : 7
-						 */
-						csvFileData=new StringBuilder();
-						for(int i = 0; i<columnNameList.size(); i++){
-							switch (i) {
-							case 6:
-								csvFileData.append(totalTransactionAmount);
-								csvFileData.append(",");
-								break;
-							case 7:
-								csvFileData.append(totalPassangers);
-								csvFileData.append(",");
-								break;
-							case 8:
-								csvFileData.append(totalTicketsIssued);
-								csvFileData.append(",");
-								break;
-							default: 
-								csvFileData.append(",");
-								break;
-							}
-						}
+						//Reading each cell value
+						csvFileData.append(Float.parseFloat(reportDataValues.getSpeed()+""));
+						csvFileData.append(",");
+						csvFileData.append(reportDataValues.getDistance()+"");
+						csvFileData.append(",");
+						csvFileData.append(reportDataValues.getLocation().getFirstPoint().getX()+"");
+						csvFileData.append(",");
+						csvFileData.append(reportDataValues.getLocation().getFirstPoint().getY()+"");
+						csvFileData.append(",");
+						csvFileData.append(Float.parseFloat(reportDataValues.getSpeed()+""));
+						csvFileData.append(",");
+						csvFileData.append(reportDataValues.getLocation().getFirstPoint().y+":"+reportDataValues.getLocation().getFirstPoint().x);
+						csvFileData.append(",");
+						csvFileData.append(reportDataValues.getOccurredat()+"");
 						bw.write(csvFileData.toString());
 						bw.write("\n");
 					}
@@ -408,23 +250,23 @@ public class ExportUtils {
 			int rowNum=0;	
 			int columnIndex=0;
 			int headerColumIndex = reportEntity.getTotalNoOfColumns()/2;
-			/*Getting the name and data list from the report Entity*/
-			List<String[]> reportDataList = reportEntity.getReportDataList();
+			//Getting the name and data list from the report Entity
+			List<TrackHistoryEntity> reportDataList = reportEntity.getReportDataList();
 			List<String> columnNameList =reportEntity.getTableColumnNamesList();
-			/*Creating  and placing the excel file in temp dir*/
+			//Creating  and placing the excel file in temp dir
 			excelFile = createFileDirectory(reportEntity.getTableName(),".xlsx");
 			FileOutputStream out=new FileOutputStream(excelFile);
 			XSSFWorkbook workbook=new XSSFWorkbook();
-			/*Creating the new Sheet*/
+			//Creating the new Sheet
 			XSSFSheet sheet=workbook.createSheet(reportEntity.getTableName()+"Report1");
 
-			/*Placing the report header and data values in the excel Sheet*/
-			/*Placing the report header*/
+			/*Placing the report header and data values in the excel Sheet
+			Placing the report header*/
 			XSSFRow headerRow=sheet.createRow(rowNum++);
 			Cell cell1=headerRow.createCell(headerColumIndex);
 			cell1.setCellValue(reportEntity.getReportName());
 
-			/*Placing the column headers*/
+			//Placing the column headers
 			XSSFRow row=sheet.createRow(rowNum++);
 			for(String columnName : columnNameList){
 				Cell cell=row.createCell(columnIndex);
@@ -433,89 +275,32 @@ public class ExportUtils {
 			}
 			int serialNumber = 0;
 			logger.debug("Report Entity Size : "+reportEntity.getReportDataList().size());
-			/*Appending the data to the xlsx report*/
+			//Appending the data to the xlsx report
 			if(reportEntity.getReportDataList() != null && reportEntity.getReportDataList().size() > 0){
-				float totalTransactionAmount = 0;
-				int totalPassangers = 0;
-				int totalTicketsIssued = 0;
-				/*Reading the each row values*/
-				for(String[] reportDataValues : reportDataList){
+				//Reading the each row values
+				for(TrackHistoryEntity reportDataValues : reportDataList){
 					row=sheet.createRow(rowNum++); 
 					serialNumber++;
 					Cell cell=row.createCell(0);
 					cell.setCellValue(serialNumber);
-					/*Reading each cell value*/
-					for(int noOfColumns=0,cellNo=1;cellNo<columnIndex;noOfColumns++,cellNo++){
-						cell=row.createCell(cellNo);
-						if(reportType.equalsIgnoreCase("detailed")){
-							switch (noOfColumns) {
-							case 13:
-								totalTransactionAmount += Float.parseFloat(reportDataValues[noOfColumns]);
-								cell.setCellValue(Float.parseFloat(reportDataValues[noOfColumns]));
-								break;
-							case 19:
-								totalPassangers += Integer.parseInt(reportDataValues[noOfColumns]);
-								cell.setCellValue(Integer.parseInt(reportDataValues[noOfColumns]));
-								break;
-							case 20:
-								totalTicketsIssued += Integer.parseInt(reportDataValues[noOfColumns]);
-								cell.setCellValue(Integer.parseInt(reportDataValues[noOfColumns]));
-								break;
-							default: 
-								cell.setCellValue(reportDataValues[noOfColumns]);
-								break;
-							}
-						} else if(reportType.equalsIgnoreCase("summary")){
-							switch (noOfColumns) {
-							case 5:
-								totalTransactionAmount += Float.parseFloat(reportDataValues[noOfColumns]);
-								cell.setCellValue(Float.parseFloat(reportDataValues[noOfColumns]));
-								break;
-							case 6:
-								totalPassangers += Integer.parseInt(reportDataValues[noOfColumns]);
-								cell.setCellValue(Integer.parseInt(reportDataValues[noOfColumns]));
-								break;
-							case 7:
-								totalTicketsIssued += Integer.parseInt(reportDataValues[noOfColumns]);
-								cell.setCellValue(Integer.parseInt(reportDataValues[noOfColumns]));
-								break;
-							default: 
-								cell.setCellValue(reportDataValues[noOfColumns]);
-								break;
-							}
-						} else {
-							cell.setCellValue(reportDataValues[noOfColumns]);
-						}
-					}
-				}
-				if(reportType.equalsIgnoreCase("detailed")){
-					//TODO : Create the Transaction entity and get the column values to be summed from the entity 
-					/*
-					 *Transaction Amount Column : 13
-					 *No of Passengers : 19
-					 *No of Tickets : 20
-					 */
-					row=sheet.createRow(rowNum++); 
-					Cell cell=row.createCell(14);
-					cell.setCellValue(totalTransactionAmount);
-					cell=row.createCell(20);
-					cell.setCellValue(totalPassangers);
-					cell=row.createCell(21);
-					cell.setCellValue(totalTicketsIssued);
-				} else if(reportType.equalsIgnoreCase("summary")){
-					//TODO : Create the Transaction entity and get the column values to be summed from the entity 
-					/*
-					 *Transaction Amount Column : 5
-					 *No of Passengers : 6
-					 *No of Tickets : 7
-					 */
-					row=sheet.createRow(rowNum++); 
-					Cell cell=row.createCell(6);
-					cell.setCellValue(totalTransactionAmount);
-					cell=row.createCell(7);
-					cell.setCellValue(totalPassangers);
-					cell=row.createCell(8);
-					cell.setCellValue(totalTicketsIssued);
+					//Reading each cell value
+					cell=row.createCell(1);
+					cell.setCellValue(Float.parseFloat(reportDataValues.getSpeed()+""));
+
+					cell=row.createCell(2);
+					cell.setCellValue(Float.parseFloat(reportDataValues.getDistance()+""));
+
+					cell=row.createCell(3);
+					cell.setCellValue(reportDataValues.getLocation().getFirstPoint().getX()+"");
+
+					cell=row.createCell(4);
+					cell.setCellValue(reportDataValues.getLocation().getFirstPoint().getY()+"");
+
+					cell=row.createCell(5);
+					cell.setCellValue(reportDataValues.getLocation().getFirstPoint().y+":"+reportDataValues.getLocation().getFirstPoint().x);
+
+					cell=row.createCell(6);
+					cell.setCellValue(reportDataValues.getOccurredat()+"");
 				}
 			}else{
 				logger.error("No data in the data list");

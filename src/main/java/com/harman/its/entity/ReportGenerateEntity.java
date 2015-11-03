@@ -6,12 +6,12 @@ public class ReportGenerateEntity {
 
 	private String tableName;
 	private List<String> tableColumnNamesList;
-	private List<String[]> reportDataList;
+	private List<TrackHistoryEntity> reportDataList;
 	private int totalNoOfColumns;
 	private String reportName;
 	
 	
-	public ReportGenerateEntity(String tableName,List<String> tableColumnNamesList,List<String[]> reportDataList,int totalNoOfColumns,String reportName){
+	public ReportGenerateEntity(String tableName,List<String> tableColumnNamesList,List<TrackHistoryEntity> reportDataList,int totalNoOfColumns,String reportName){
 		this.tableName=tableName;
 		this.tableColumnNamesList=tableColumnNamesList;
 		this.reportDataList=reportDataList;
@@ -43,10 +43,10 @@ public class ReportGenerateEntity {
 	public void setTableColumnNamesList(List<String> tableColumnNamesList) {
 		this.tableColumnNamesList = tableColumnNamesList;
 	}
-	public List<String[]> getReportDataList() {
+	public List<TrackHistoryEntity> getReportDataList() {
 		return reportDataList;
 	}
-	public void setReportDataList(List<String[]> reportDataList) {
+	public void setReportDataList(List<TrackHistoryEntity> reportDataList) {
 		this.reportDataList = reportDataList;
 	}
 	public int getTotalNoOfColumns() {
