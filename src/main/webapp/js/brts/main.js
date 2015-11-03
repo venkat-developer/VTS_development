@@ -30,7 +30,7 @@ $(function(){
    $('#header').load("/HITS-UI/main.do?type=Header");
    $('#navbar').load("/HITS-UI/main.do?type=SideBar");  
    $('#footer').load("/HITS-UI/main.do?type=Footer");
-   $('#track').load("/HITS-UI/main.do?type=LastLogin&reportType=track");
+   $('#lastlogin').load("/HITS-UI/main.do?type=LastLogin");
    $('#idle').load("/HITS-UI/main.do?type=LastLogin&reportType=idle");
    $('#stats').load("/HITS-UI/main.do?type=LastLogin&reportType=stats");
    $('#activity').load("/HITS-UI/main.do?type=LastLogin&reportType=activity");
