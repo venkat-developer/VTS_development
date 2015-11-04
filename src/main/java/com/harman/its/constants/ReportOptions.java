@@ -7,6 +7,8 @@ package com.harman.its.constants;
  */
 public enum ReportOptions {
 
-	PDF,CSV,EXCEL,PRINT,PREVIEW,DISPLAY;
+	PDF,CSV,EXCEL,PRINT,PREVIEW,DISPLAY,
+	
+	ACTIVITY,TRACK,IDLE,STATSTICS;
 	
 }

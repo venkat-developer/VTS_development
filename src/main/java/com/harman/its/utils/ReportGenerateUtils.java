@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.harman.its.constants.ReportOptions;
 import com.harman.its.dao.impl.TrackHistoryDaoImpl;
 import com.harman.its.entity.ReportGenerateEntity;
 import com.harman.its.entity.TrackHistoryEntity;
@@ -33,10 +34,11 @@ public class ReportGenerateUtils {
 		ReportGenerateEntity reportEntity = null;
 		String reportFileName = null;
 		String reportName=null;
-		
-		//switch(SettingFileDevices.valueOf(fileHeader.toUpperCase().trim())){
-		//case BUSSTOPDETAILS :
-		logger.info("In BusStopDetailcase");	
+		logger.info("Report type is :::: "+fileHeader.toUpperCase().trim());
+		TrackHistoryDaoImpl trackHistoryDaoImpl = new TrackHistoryDaoImpl();
+		switch(ReportOptions.valueOf(fileHeader.toUpperCase().trim())){
+		case ACTIVITY :
+		logger.info("In ACTIVITY");	
 		// Setting the column Names of the table
 		reportFileName=fileHeader;
 		tableColumnNamesList.add("S.No");
@@ -46,19 +48,56 @@ public class ReportGenerateUtils {
 		tableColumnNamesList.add("Longitude");
 		tableColumnNamesList.add("Location");
 		tableColumnNamesList.add("Updated At");
-		logger.info("In transaction Deatils case ");	
-		TrackHistoryDaoImpl trackHistoryDaoImpl = new TrackHistoryDaoImpl();
 		reportDataList = trackHistoryDaoImpl.selectBetweenDates(vehicleId, startDate, endDate);
 		//reportDataList = transactionDaoImpl.getSummaryReportData(operatorName,startDate,endDate);
 		logger.debug("Reports data size is "+reportDataList.size());
-		reportFileName="Summary";
-		reportName="Summary Report from "+startDate+"- to  "+endDate+"   Operartor : "+vehicleId;
-
+		reportFileName="Activity ";
+		reportName="Activity Report from "+startDate+"- to  "+endDate+"   Vehicle : "+vehicleId;
 		reportEntity=new ReportGenerateEntity(reportFileName,tableColumnNamesList,reportDataList,tableColumnNamesList.size(),reportName);
-		//break;
-		//default:
-		//break;
-		//}
+		break;
+		case IDLE :
+			logger.info("In IDLE");	
+			// Setting the column Names of the table
+			reportFileName=fileHeader;
+			tableColumnNamesList.add("S.No");
+			tableColumnNamesList.add("Speed");
+			tableColumnNamesList.add("Distance");
+			tableColumnNamesList.add("Latitude");
+			tableColumnNamesList.add("Longitude");
+			tableColumnNamesList.add("Location");
+			tableColumnNamesList.add("Updated At");
+			reportDataList = trackHistoryDaoImpl.selectBetweenDates(vehicleId, startDate, endDate);
+			//reportDataList = transactionDaoImpl.getSummaryReportData(operatorName,startDate,endDate);
+			logger.debug("Reports data size is "+reportDataList.size());
+			reportFileName="Idle ";
+			reportName="Idle Report from "+startDate+"- to  "+endDate+"   Vehicle : "+vehicleId;
+
+			reportEntity=new ReportGenerateEntity(reportFileName,tableColumnNamesList,reportDataList,tableColumnNamesList.size(),reportName);
+			break;
+		case STATSTICS :
+			logger.info("In STATSTICS");	
+			// Setting the column Names of the table
+			reportFileName=fileHeader;
+			tableColumnNamesList.add("S.No");
+			tableColumnNamesList.add("Speed");
+			tableColumnNamesList.add("Distance");
+			tableColumnNamesList.add("Latitude");
+			tableColumnNamesList.add("Longitude");
+			tableColumnNamesList.add("Location");
+			tableColumnNamesList.add("Updated At");
+			logger.info("In transaction Deatils case ");	
+
+			reportDataList = trackHistoryDaoImpl.selectBetweenDates(vehicleId, startDate, endDate);
+			logger.debug("Reports data size is "+reportDataList.size());
+			reportFileName="Stastics ";
+			reportName="Stastics Report from "+startDate+"- to  "+endDate+"   Vehicle : "+vehicleId;
+
+			reportEntity=new ReportGenerateEntity(reportFileName,tableColumnNamesList,reportDataList,tableColumnNamesList.size(),reportName);
+			break;
+			
+		default:
+		break;
+		}
 		return reportEntity;
 	}
 }

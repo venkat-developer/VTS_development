@@ -114,13 +114,13 @@
 							</a></li>
 							<li><a
 								href="/HITS-UI/reportsgen.do?reportOption=pdf&heading=${heading}&from=${from}&to=${to}&operatortype=${operatortype}&reportType=${reportType}&fhrs=${fhrs}
-								&fmin=${fmin}&fsec=${fsec}&thrs=${thrs}&tmin=${tmin}&tsec=${tsec}&timefilter=${timefilter}&vehicleId=${vehicleId}"">
+								&fmin=${fmin}&fsec=${fsec}&thrs=${thrs}&tmin=${tmin}&tsec=${tsec}&timefilter=${timefilter}&vehicleId=${vehicleId}">
 									&nbsp;&nbsp;<img src="img/PDF.jpeg" height="30" width="40"
 									title="pdf" />&nbsp;&nbsp;&nbsp;Pdf Format
 							</a></li>
 							<li><a
 								href="/HITS-UI/reportsgen.do?reportOption=excel&heading=${heading}&from=${from}&to=${to}&operatortype=${operatortype}&reportType=${reportType}&fhrs=${fhrs}
-								&fmin=${fmin}&fsec=${fsec}&thrs=${thrs}&tmin=${tmin}&tsec=${tsec}&timefilter=${timefilter}&vehicleId=${vehicleId}"">
+								&fmin=${fmin}&fsec=${fsec}&thrs=${thrs}&tmin=${tmin}&tsec=${tsec}&timefilter=${timefilter}&vehicleId=${vehicleId}">
 									&nbsp;&nbsp;<img src="img/excel.jpg" height="30" width="40"
 									title="excel" />&nbsp;&nbsp;&nbsp;Excel Format
 							</a></li>

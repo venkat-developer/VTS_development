@@ -66,7 +66,6 @@ public class ReportGeneration extends SimpleFormController {
 		logger.info("Report generated for the files of"+fileHeader);
 		String fromDate=request.getParameter("from");
 		String toDate=request.getParameter("to");
-		String operatorName=request.getParameter("operatortype");
 		String reportType=request.getParameter("reportType");
 		String fromHrs=request.getParameter("fhrs");
 		String fromMin=request.getParameter("fmin");
@@ -95,6 +94,7 @@ public class ReportGeneration extends SimpleFormController {
 			Date endDate = simpleDateFormat.parse(endDateString);
 
 			reportEntity = report.getReportEntity(vehicleIdLong,fileHeader,reportType,startDate,endDate);
+			logger.debug(" Report entity is "+reportEntity);
 			ExportUtils exportUtils = new ExportUtils();
 			String filePath = exportUtils.exportData(reportOption,reportEntity, reportType);
 			if(filePath!=null){

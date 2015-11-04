@@ -52,11 +52,11 @@ public class ExportUtils {
 			break;
 		case CSV:
 			logger.info("Export - Csv format");
-			//fileCreatedPath = convertToCSV(reportEntity, reportType);
+			fileCreatedPath = convertToCSV(reportEntity, reportType);
 			break;
 		case EXCEL:
 			logger.info("Export - Excel Format");
-			//fileCreatedPath = convertToExcel(reportEntity, reportType);
+			fileCreatedPath = convertToExcel(reportEntity, reportType);
 			break;	
 		case PRINT:
 			logger.info("Printing the document");

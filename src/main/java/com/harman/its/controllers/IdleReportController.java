@@ -44,23 +44,25 @@ public class IdleReportController extends SimpleFormController {
 		String toHrs=request.getParameter("thrs");
 		String toMin=request.getParameter("tmin");
 		String toSec=request.getParameter("tsec");
-		
+
 		String timeFilter=request.getParameter("timefilter");
 		logger.debug("Time filter is "+timeFilter);
 		String startDateString  =null;
 		String endDateString  = null;
-		if(timeFilter.equalsIgnoreCase("today")){
-			Date d = new Date();
-			startDateString = (d.getYear()+1900)+"-"+(d.getMonth()+1)+"-"+d.getDate()+" 00:00:00";
-			endDateString = (d.getYear()+1900)+"-"+(d.getMonth()+1)+"-"+d.getDate()+" 23:59:59";
-		}else{
-			startDateString = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
-			endDateString = toDate+" "+toHrs+":"+toMin+":"+toSec;
-			logger.debug("Start Date : "+startDateString+" , End Date : "+endDateString);
+		if(timeFilter!=null){
+			if(timeFilter.equalsIgnoreCase("today")){
+				Date d = new Date();
+				startDateString = (d.getYear()+1900)+"-"+(d.getMonth()+1)+"-"+d.getDate()+" 00:00:00";
+				endDateString = (d.getYear()+1900)+"-"+(d.getMonth()+1)+"-"+d.getDate()+" 23:59:59";
+			}else{
+				startDateString = fromDate+" "+fromHrs+":"+fromMin+":"+fromSec;
+				endDateString = toDate+" "+toHrs+":"+toMin+":"+toSec;
+				logger.debug("Start Date : "+startDateString+" , End Date : "+endDateString);
+			}
+
 		}
 
 
-		
 		logger.debug("Start Date : "+startDateString+" , End Date : "+endDateString);
 
 		String vehicleIdString =request.getParameter("vehicleId");
@@ -85,6 +87,7 @@ public class IdleReportController extends SimpleFormController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addObject("heading","Idle");
 		model.addObject("reportType", "idle");
 		return model;
 	}
