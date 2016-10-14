@@ -78,15 +78,19 @@ public class ReportGenerateUtils {
 			logger.info("In STATSTICS");	
 			// Setting the column Names of the table
 			reportFileName=fileHeader;
+			
 			tableColumnNamesList.add("S.No");
+			tableColumnNamesList.add("VehicleName");
 			tableColumnNamesList.add("Speed");
+			tableColumnNamesList.add("Avg.Speed");
 			tableColumnNamesList.add("Distance");
-			tableColumnNamesList.add("Latitude");
-			tableColumnNamesList.add("Longitude");
-			tableColumnNamesList.add("Location");
-			tableColumnNamesList.add("Updated At");
-			logger.info("In transaction Deatils case ");	
-
+			tableColumnNamesList.add("Start Latitude");
+			tableColumnNamesList.add("Start Longitude");
+			tableColumnNamesList.add("Start Location");
+			tableColumnNamesList.add("End Latitude");
+			tableColumnNamesList.add("End Longitude");
+			tableColumnNamesList.add("End Location");
+			tableColumnNamesList.add("Idle Duration");
 			reportDataList = trackHistoryDaoImpl.selectBetweenDates(vehicleId, startDate, endDate);
 			logger.debug("Reports data size is "+reportDataList.size());
 			reportFileName="Stastics ";

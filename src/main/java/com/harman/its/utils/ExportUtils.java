@@ -119,6 +119,7 @@ public class ExportUtils {
 			if(reportEntity.getReportDataList() != null && reportEntity.getReportDataList().size() > 0){
 				int serialNumber=0;
 				for(TrackHistoryEntity reportDataValues : reportDataList){
+					
 					serialNumber++;
 					pdfTableCell=new PdfPCell(new Phrase(7, String.valueOf(serialNumber)));
 					pdfTable.addCell(pdfTableCell);
