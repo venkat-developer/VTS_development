@@ -1,0 +1,18 @@
+@charset 'UTF-8';
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.topbar
+{    
+ background: url('http://live-wallpaper.net/iphone/img/app/m/e/metal-grate-pattern-wallpaper_05372dc52fd77ac71dcd8532317dc932_s.jpg') repeat scroll 0% 0% #1AB3BD;
+ color: #FFF;    
+  
+}    
