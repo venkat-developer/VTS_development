@@ -14,8 +14,8 @@
 		<table>
 			<tr>
 				<td><a href="tripSheet">Trip Sheet</a></td>
-				<td><a href="controlPanel">Control Panel</a></td>
-				<td><a href="reports">Reports</a></td>
+<!-- 				<td><a href="controlPanel">Control Panel</a></td> -->
+<!-- 				<td><a href="reports">Reports</a></td> -->
 			</tr>
 		</table>
 	</div>

@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	<ctx:annotation-config></ctx:annotation-config>
-	<ctx:component-scan base-package="com.sansol"></ctx:component-scan>
+	<ctx:component-scan base-package="com.sansol"/>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,4 +25,16 @@
 	cache-period="31556926"/>
 
     <mvc:annotation-driven />
+    <!-- Initialization for data source -->
+   <bean id = "dataSource" 
+      class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
+      <property name = "url" value = "jdbc:mysql://localhost:3306/spring_mvc"/>
+      <property name = "username" value = "root"/>
+      <property name = "password" value = "test@123"/>
+   </bean>
+   <!-- Definition for studentJDBCTemplate bean -->
+   <bean id = "jdbcTemplate" class = "com.sansol.dao.UserDaoImpl">
+      <property name = "dataSource" ref = "dataSource" />
+   </bean>
 </beans>
