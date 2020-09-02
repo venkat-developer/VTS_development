@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HITS</title>
+    <title>Travel management system</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/normalize.css" />
   </head>
@@ -19,8 +19,7 @@
           <!-- <img src="img/logo.jpg" height="30" width="120" /> -->
         </h1>
       </div>
-      <h1 style="font-family: High Tower Text; font-size: 90">VEHICLE TRACKING SYSTEM
-      </h1>
+      <h1 style="font-family: High Tower Text; font-size: 90">TRAVEL MANAGEMENT SYSTEM</h1>
     </div>
   </body>
 </html>

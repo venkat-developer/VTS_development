@@ -92,13 +92,3 @@
 	<script src="js/brts/alerts.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

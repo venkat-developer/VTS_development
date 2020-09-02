@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Front Page</title>
+<title>Side bar</title>
 <link rel="stylesheet" href="css/foundation.css" />
 <link rel="stylesheet" href="css/normalize.css" />
 
@@ -19,14 +19,14 @@
 		<ul class="off-canvas-list">
 			<li><label>Menu</label></li>
 			<li><a href="/HITS-UI/home.do">Home</a></li>
-			<li><a href="/HITS-UI/live.do">Live Data</a></li>
+			<li><a href="/HITS-UI/tripSheet.do">Trip sheet</a></li>
 			<li><label>Reports</label></li>
-			<li><a href="/HITS-UI/divisionhome.do">Trck</a></li>
-			<li><a href="/HITS-UI/depothome.do">Idle</a></li>
-			<li><a href="/HITS-UI/busdetailshome.do">Stastics</a></li>
-			<li><a href="/HITS-UI/driverhome.do">Driver</a></li>
-			<li><a href="/HITS-UI/busStopshome.do">Activity</a></li>
-			<li><a href="/HITS-UI/inputValidate.do">Settings</a></li>
+<!-- 			<li><a href="/HITS-UI/divisionhome.do">Monthly</a></li> -->
+<!-- 			<li><a href="/HITS-UI/depothome.do">Idle</a></li> -->
+<!-- 			<li><a href="/HITS-UI/busdetailshome.do">Stastics</a></li> -->
+<!-- 			<li><a href="/HITS-UI/driverhome.do">Driver</a></li> -->
+<!-- 			<li><a href="/HITS-UI/busStopshome.do">Activity</a></li> -->
+<!-- 			<li><a href="/HITS-UI/inputValidate.do">ControlPanel</a></li> -->
 		</ul>
 	</aside>
 

@@ -1,115 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+  pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
+<%@ page language="java" import="java.util.*,org.json.simple.JSONValue"%>
+<!DOCTYPE html>
 
-<!-- Head part-->
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HITS-Upload Fare Chart Details</title>
-<link rel="stylesheet" href="css/foundation.css" />
+<title>VTS-Home</title>
 
+<link rel="stylesheet" href="css/foundation.css" />
 <link rel="stylesheet" href="css/normalize.css" />
 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+   <script>
+  function initialize() {
+    var mapCanvas = document.getElementById('map_Data');
+    var mapOptions = {
+      center: new google.maps.LatLng(12.123, 77.123),
+      zoom: 3,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 </head>
+
 <body>
 	<!-- Header Part of the html-->
 	<div id="header"></div>
 	<!-- Body Part of the html-->
 	<br>
-	<div class="row" style="height: 60%; width: 100%">
+	<div class="row" style="width: 100%">
 		<div class="off-canvas-wrap" data-offcanvas>
 			<div class="inner-wrap">
 				<nav class="tab-bar"> <section class="left-small"> <a
 					class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
 				</section> <section class="middle tab-bar-section">
 				<h1 class="title">Menu</h1>
-				</section> <div id="lastlogin"></div></nav>
+				</section>
+				<div id="lastlogin"></div>
+				</nav>
 				<div id="navbar"></div>
 				<section class="main-section"> <!-- content goes here -->
-				<div class="large-11 columns" style="height: 92.5%">
-					<h1>Fare Chart</h1>
-					<br> <br>
-					<div class="large-5 push-1 columns">
-						<!--- Device type1 Form Starts here--->
-						
-						<!-- 
-						 Device Type 1 - Unified
-						 Device Type 2 - Stopwise Farechart
-						 Device Type 3 - Routewise Farechart						
-						 -->
-						<form action="/HITS-UI/farechartupload.do">
-							<fieldset>
-								<legend>
-									<strong>Device Type</strong><br> <br>
-								</legend>
-								<label>Device Name :<br> <br> <select
-									name="devicename" id="devicename"
-									onchange="window.open(this.options[this.selectedIndex].value,'_top')"
-									required>
-										<option value="" disabled selected style="display: none;">----
-											Select the device ----</option>
-										<option
-											value="/HITS-UI/farechartupload.do?deviceName=DeviceType1">Unified</option>
-										<option
-											value="/HITS-UI/farechartupload.do?deviceName=DeviceType2">Stopwise Farechart</option>
-										<option
-											value="/HITS-UI/farechartupload.do?deviceName=DeviceType3">Routewise Farechart</option>	
-								</select>
-								</label> <br> <br>
-							</fieldset>
-						</form>
-					</div>
-					<div class="large-4 columns">
-						<!--- Display Form Starts here--->
-						<form action="/HITS-UI/farechartupload.do?report=set">
-							<fieldset>
-								<legend>
-									<strong>Display</strong><br> <br>
-								</legend>
-								<label>Select the type to Display :<br> <br> <select
-									name="devicename" id="devicename" required>
-										<option value="" disabled selected style="display: none;">----
-											Select the content ----</option>
-										<option value="Device1">Device1</option>
-										<option value="Device2">Device2</option>
-										<option value="Device3">Device3</option>
-										<option value="Device4">Device4</option>
-										<option value="Device4">View All</option>
-								</select> <br> <br>
-								</label>
-								<center>
-									<button type="submit" class="radius button">Go</button>
-								</center>
-								<br> <br>
-							</fieldset>
-						</form>
-					</div>
+				<br>
+				<div class="large-1 push columns" style="height:500px;overflow-y:scroll;width: 153px; overflow-x: visible;">
+				<div style="background-image: linear-gradient(to bottom,#2ba6cb 0,#2ba6cb 100%);font-weight: bold;color: #FFF;height: 22px;padding-top: 2px;padding-left: 0px;width:115px">Vehicles List</div>
+				<c:forEach items='${tripDeatils}' var='tripdata'>
+					<a herf="#"><div style="border-radius: 10px; width:115px;overflow-wrap: initial;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;border-top-left-radius: 5px;border-top-right-radius: 5px">
+					<h3 style="font-size:1em;font-size: 1em;font-weight: normal;border-top: 2px solid #CEDBE6;padding-left: 0px;margin-top: 0;margin-bottom: 0;padding-top: 2px;color: #000;">${tripdata.vehicleName}</h3>
+					<ul><li><h1 style="font-size:.9em;">Driver Name : ${tripdata.driverName}</h1></li></ul>
+					</div></a>
+				</c:forEach>
+				</div>
+				<div class="large-10 columns">
+					<center>
+						<div class="orbit-container" id="map_Data" style ="height:500px">
+
+						</div>
+				</center>
+					<br>
 				</div>
 				</section>
 				<a class="exit-off-canvas"></a>
 			</div>
 		</div>
 	</div>
+	<br>
 	<!-- Footer of the Google app html-->
 	<div id="footer"></div>
 	<script src="js/vendor/modernizr.js"></script>
-	<script src="js/brts/farechart.js"></script>
 	<script src="js/vendor/jquery.js"></script>
-	<script src="js/foundation.min.js"></script>
+	<script src="js/foundation.min.js">
+		
+	</script>
 	<script src="js/foundation.js"></script>
 	<script src="js/foundation.orbit.js"></script>
 	<script src="js/brts/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

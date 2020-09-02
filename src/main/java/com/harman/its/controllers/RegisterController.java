@@ -10,15 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
-import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.WebUtils;
 
 import com.harman.its.dao.impl.LogsDaoImpl;
-import com.harman.its.dao.impl.UserDaoImpl;
 import com.harman.its.entity.LogsEntity;
 import com.harman.its.entity.UserEntity;
-import com.harman.its.entity.UserEntity.UserRole;
-import com.harman.its.utils.Constants;
 import com.harman.its.utils.Constants.SESSION;
 import com.harman.its.utils.SessionUtils;
 
@@ -35,62 +31,12 @@ import com.harman.its.utils.SessionUtils;
  *
  */
 
-public class LoginController extends SimpleFormController {
+public class RegisterController extends SimpleFormController {
 
-	private Logger logger = Logger.getLogger(LoginController.class);
+	private Logger logger = Logger.getLogger(RegisterController.class);
 
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response) {
 		ModelAndView model=new ModelAndView("login");
-		String userName = request.getParameter("userName");
-		String password = request.getParameter("password");
-		String type="Logged in";
-		try{
-			if(isLogOut(request)){
-				return model;
-			}
-			if(userName == null || password == null){
-				model= new ModelAndView("login");
-				return model;
-			}
-			UserDaoImpl userDao = new UserDaoImpl();
-			UserEntity userEntity = userDao.authenticateUser(userName,password);
-			if(null !=userEntity) {
-				logger.debug("User name : "+userEntity.getLogin()+" , role is "+userEntity.getRole());
-				if(userEntity.getRole()==UserRole.NORMAL_USER){
-					/**
-					 * User Logged in success redirecting to home page.
-					 */
-					model = new ModelAndView(new RedirectView(getSuccessView()));
-					WebUtils.setSessionAttribute(request, Constants.SESSION.USER_OBJECT, userEntity);
-					logLoginDeatils(request, type);
-				}else if (userEntity.getRole()==UserRole.ADMIN_USER) {
-					model = new ModelAndView("controlpanel");
-					WebUtils.setSessionAttribute(request, Constants.SESSION.USER_OBJECT, userEntity);
-					logLoginDeatils(request, type);
-				}else if (userEntity.getRole()==UserRole.SUPER_USER) {
-					model = new ModelAndView("register");
-					WebUtils.setSessionAttribute(request, Constants.SESSION.USER_OBJECT, userEntity);
-					logLoginDeatils(request, type);
-				}	
-			}else{
-				model=new ModelAndView("login");
-				model.addObject("msg", "Invalid Username or Password");
-			}
-		}catch (NullPointerException e) {
-			logger.error("Error while logging the requests ",e);
-			model=new ModelAndView("error");
-			model.addObject("errorHeading","Login");
-			model.addObject("errorException","NullPointerException");
-			model.addObject("errorMsg", "Returns NULL while retriving user credentials from DB");
-			return model;
-		}catch(Exception e){
-			logger.error("Error while logging the requests ",e);
-			model=new ModelAndView("error");
-			model.addObject("errorHeading","Login");
-			model.addObject("errorException","Undefined Exception");
-			model.addObject("errorMsg", e.toString());
-			return model;
-		}
 		return model;
 	}
 

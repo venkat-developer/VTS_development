@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HITS-Login Page</title>
+<title>Travel management Login Page</title>
 <link rel="stylesheet" href="css/foundation.css" />
 
 <link rel="stylesheet" href="css/normalize.css" />
@@ -27,19 +27,19 @@
 		<div class="large-9 push-3 columns" style="opacity: 10">
 			<center>
 				<div class="orbit-container">
-					<ul data-orbit
-						data-options="animation:slide;
-                                      pause_on_hover:true;
-                                      animation_speed:500;
-                                      navigation_arrows:true;
-                                      bullets:false;">
-						<li><img src="img/home1.jpg" alt="slide 1" height="3600"
-							width="900" /></li>
-						<li><img src="img/home2.jpg" alt="slide 1" height="3600"
-							width="900" /></li>
-						<li><img src="img/home3.jpg" alt="slide 1" height="3600"
-							width="900" /></li>
-					</ul>
+<!-- 					<ul data-orbit -->
+<!-- 						data-options="animation:slide; -->
+<!--                                       pause_on_hover:true; -->
+<!--                                       animation_speed:500; -->
+<!--                                       navigation_arrows:true; -->
+<!--                                       bullets:false;"> -->
+<!-- 						<li><img src="img/home1.jpg" alt="slide 1" height="3600" -->
+<!-- 							width="900" /></li> -->
+<!-- 						<li><img src="img/home2.jpg" alt="slide 1" height="3600" -->
+<!-- 							width="900" /></li> -->
+<!-- 						<li><img src="img/home3.jpg" alt="slide 1" height="3600" -->
+<!-- 							width="900" /></li> -->
+<!-- 					</ul> -->
 				</div>
 			</center>
 			<br>

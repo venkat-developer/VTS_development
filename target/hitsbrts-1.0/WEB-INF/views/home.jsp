@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>VTS-Home</title>
+<title>Tavel management</title>
 
 <link rel="stylesheet" href="css/foundation.css" />
 <link rel="stylesheet" href="css/normalize.css" />
@@ -18,32 +18,35 @@
       google.load('visualization', '1.0', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
+     // google.setOnLoadCallback(drawChart);
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
-
+	  //(${vehiclesonlinecount},${vehiclesoffroadcount},${vehiclesofflinecdccount},${vehiclesofflinelowgpscount},${vehiclesofflinelowgsmcount},${vehiclesofflinecount});
+      function drawChart(vehiclesonlinecount,vehiclesoffroadcount,vehiclesofflinecdccount,vehiclesofflinelowgpscount,vehiclesofflinelowgsmcount,vehiclesofflinecount) {
+		//alert('You have called me '+onLineCount+' offline count'+offlinecount);
         // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+         var data = google.visualization.arrayToDataTable([
+          ['Status', 'No.of Vehicles'],
+          ['Online',     vehiclesonlinecount],
+          ['Offroad',      vehiclesoffroadcount],
+		  ['Charger Disconnected',      vehiclesofflinecdccount],
+		  ['Low GPS',      vehiclesofflinelowgpscount],
+		  ['Low GSM',      vehiclesofflinelowgsmcount],
+		  ['Offline',      vehiclesofflinecount]
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
+		var options = {'title':'How Much Pizza I Ate Last Night',
+						title: 'My Daily Activities',
+						pieHole: 0.4,
                        'width':600,
                        'height':600};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		// Instantiate and draw our chart, passing in some options.
+        
+		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		//var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
     </script>
@@ -72,9 +75,11 @@
 				<div class="large-9 push-1 columns">
 					<center>
 						<div id ="chart_div" class="orbit-container" style ="height:500px">
-							
+							<script>
+							drawChart(${vehiclesonlinecount},${vehiclesoffroadcount},${vehiclesofflinecdccount},${vehiclesofflinelowgpscount},${vehiclesofflinelowgsmcount},${vehiclesofflinecount});
+							</script>
 						</div>
-
+					
 					</center>
 					<br>
 				</div>
@@ -96,4 +101,3 @@
 	<script src="js/brts/main.js"></script>
 </body>
 </html>
-

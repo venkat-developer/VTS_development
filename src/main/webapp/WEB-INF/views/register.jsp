@@ -55,7 +55,7 @@
 						</h5>
 						<div class="content" data-slug="panel1">
 							<h6 style="color: #de4c4c">* ${msg}</h6>
-							<form action="/HITS-UI/login.do" method="POST">
+							<form action="/HITS-UI/register.do" method="POST">
 								<center>
 									<!--Username -->
 									<div class="large-11 columns">
@@ -64,15 +64,61 @@
 									</div>
 								</center>
 								<center>
+									<!--First name -->
+									<div class="large-11 columns">
+										<br> <input type="text" id="firstName" name="firstName"
+											placeholder="Enter the First Name" required>
+									</div>
+								</center>
+								
+								<center>
+									<!--Last name name -->
+									<div class="large-11 columns">
+										<br> <input type="text" id="lastName" name="lastName"
+											placeholder="Enter the Last Name">
+									</div>
+								</center>
+								
+								<center>
 									<!-- Password -->
 									<div class="large-11 columns">
 										<input type="password" id="password" name="password"
 											placeholder="Enter the password" required>
 									</div>
 								</center>
+								<center>
+									<!-- Confirm Password -->
+									<div class="large-11 columns">
+										<input type="password" id="confirmpassword" name="confirmpassword"
+											placeholder="Confirm password" required>
+									</div>
+								</center>
+								<center>
+									<!-- Phone -->
+									<div class="large-11 columns">
+										<input type="text" id="phone" name="phone"
+											placeholder="Enter the password" required>
+									</div>
+								</center>
 								<br>
 								<center>
-									<button type="submit" class="radius button">Submit</button>
+									<!-- Email -->
+									<div class="large-11 columns">
+										<input type="text" id="emial" name="emial"
+											placeholder="Email" required>
+									</div>
+								</center>
+								<br>
+								<center>
+									<!-- Address -->
+									<div class="large-11 columns">
+										<input type="text" id="address" name="address"
+											placeholder="Address" required>
+									</div>
+								</center>
+								<br>
+								<center>
+									<button type="submit" class="radius button">Register</button>
 								</center>
 							</form>
 						</div>

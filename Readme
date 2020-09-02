@@ -1,0 +1,6 @@
+INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (3,'test','test','firstname','lastname','test@gmail.com','Bengalore',12345,2,true);
+INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (1,'super','super','superfirstname','superlastname','supertest@gmail.com','Bengalore',12345,0,true);
+INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (2,'admin','admin','adminfirst name','admin lastname','admin@gmail.com','Bengalore',678901,1,true);
+
+ALTER TABLE `spring_mvc`.`users` 
+CHANGE COLUMN `role` `userrole` INT NULL DEFAULT NULL ;

@@ -1,9 +1,5 @@
 package com.harman.its.controllers;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-import com.harman.its.dao.impl.LiveVehicleStatusDaoImpl;
 import com.harman.its.entity.LiveVehicleStatus;
 import com.harman.its.entity.LiveVehicleStatus.VehicleStatus;
 import com.harman.its.entity.UserEntity;
@@ -26,14 +21,14 @@ import com.harman.its.utils.SessionUtils;
  */
 public class HomeController extends SimpleFormController {
 	Logger logger = Logger.getLogger(HomeController.class);
+	
 	public ModelAndView handleRequestInternal(HttpServletRequest request ,HttpServletResponse response){
 		ModelAndView model = new ModelAndView("home");
 		logger.debug("Successfully Logged in now you are in Home Controller");
-		LiveVehicleStatusDaoImpl liveVehicleStatusDaoImpl = new LiveVehicleStatusDaoImpl();
 		UserEntity user = SessionUtils.getCurrentlyLoggedInUser();
 		logger.debug("User Id is "+user.getId());
 
-		List<LiveVehicleStatus> liveVehicleStatusList = liveVehicleStatusDaoImpl.fetchLiveVehicleStatusOfUser(SessionUtils.getCurrentlyLoggedInUser().getId());
+/*		List<LiveVehicleStatus> liveVehicleStatusList = liveVehicleStatusDaoImpl.fetchLiveVehicleStatusOfUser(SessionUtils.getCurrentlyLoggedInUser().getId());
 		HashMap<String, Integer> statusCount = new HashMap<String, Integer>();
 		for(LiveVehicleStatus liveStatus : liveVehicleStatusList){
 			int count = 0;
@@ -88,7 +83,7 @@ public class HomeController extends SimpleFormController {
 		}*/
 
 
-		int grandTotal = (subTotal+offlineCount);
+		/*int grandTotal = (subTotal+offlineCount);
 
 		logger.info("Sub total is "+subTotal);
 		model.addObject("vehiclesonlinecount",vehiclesOnlineCount);
@@ -98,12 +93,12 @@ public class HomeController extends SimpleFormController {
 		model.addObject("vehiclesofflinelowgsmcount", offlineLowGsmCount);
 		model.addObject("subTotal", subTotal);
 		model.addObject("grandTotal", grandTotal);
-		model.addObject("vehiclesofflinecount", offlineCount);
+		model.addObject("vehiclesofflinecount", offlineCount);*/
 		return model;
 	}
 	private VehicleStatus getVehicleStatus(LiveVehicleStatus liveVehicleStatus) {
 		VehicleStatus statusOfVehicle = VehicleStatus.OFFROAD;
-		if (liveVehicleStatus == null) {
+	/*	if (liveVehicleStatus == null) {
 			logger.error("LVOS is neither in cache nor in db");			
 			return statusOfVehicle;
 		}
@@ -140,7 +135,7 @@ public class HomeController extends SimpleFormController {
 
 		} else {
 			statusOfVehicle = VehicleStatus.ONLINE;
-		}
+		}*/
 		return statusOfVehicle;
 	}
 }

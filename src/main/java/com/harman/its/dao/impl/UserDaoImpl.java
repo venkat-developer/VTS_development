@@ -50,20 +50,19 @@ public class UserDaoImpl implements IUserDao{
 			query.append("select * from users ");
 			query.append("where username = '");
 			query.append(userName);
-			query.append("' and pass = '");
-			query.append(StringUtils.md5(password));
+			query.append("' and password = '");
+			//query.append(StringUtils.md5(password));
+			query.append(password);
 			query.append("'");
 			ResultSet rs = statement.executeQuery(query.toString());
 			while (rs.next()) {
 				userEntity= new UserEntity(rs.getLong("id"),
 						rs.getString("username"),
-						rs.getString("pass"),
-						rs.getLong("groupid"),
-						rs.getLong("owner_id"),
+						rs.getString("password"),
 						rs.getString("firstname"),
 						rs.getString("lastname"),
-						rs.getInt("offroadcount"),
-						rs.getInt("nogprscount"));
+						rs.getInt("userrole"),
+						rs.getBoolean("isactive"));
 			}
 		} catch (SQLException e) {
 			logger.error("" + e);

@@ -9,10 +9,11 @@ import org.apache.log4j.Logger;
 
 public class DataBaseConnection {
 	Logger logger = Logger.getLogger(DataBaseConnection.class);
-	private static String DRIVER_NAME = "org.postgresql.Driver";
-	private static String Connection_URL = "jdbc:postgresql://localhost/demodb";
-	private static String DB_User_Name = "postgres";
-	private static String DB_Password = "demo@123";
+	private static String DRIVER_NAME = "com.mysql.jdbc.Driver";
+	private static String Connection_URL = "jdbc:mysql://localhost/spring_mvc";
+	private static String DB_User_Name = "root";
+	private static String DB_Password = "test@123"; 
+			
 	public static DataBaseConnection _instance = null;
 	/**
 	 * Creating singleton object.

@@ -12,8 +12,7 @@ import com.harman.its.entity.ientity.IEntity;
 public class UserEntity implements IEntity<UserEntity>{
 	
 	public enum UserRole {
-		ADMIN_USER(0),NORMAL_USER(1);
-		//ADMIN(0),OWNER(1),OPERATOR(2),PASS_KEY_USER(3);
+		ADMIN_USER(1),NORMAL_USER(2),SUPER_USER(0);
 		
 		private int val;
 		
@@ -31,6 +30,8 @@ public class UserEntity implements IEntity<UserEntity>{
 				role = ADMIN_USER;
 			}else if (value == NORMAL_USER.getValue()){
 				role = NORMAL_USER;
+			}else if (value == SUPER_USER.getValue()){
+				role = SUPER_USER;
 			}
 			return role;
 		}
@@ -70,6 +71,7 @@ public class UserEntity implements IEntity<UserEntity>{
 	private UserRole role;
 	private UserStatus userStatus;
 	private Long ownerId;
+	private Boolean isActive;
 	
 	
 	private int offroadCount;
@@ -87,7 +89,17 @@ public class UserEntity implements IEntity<UserEntity>{
 		this.offroadCount = offroadCount;
 		this.noGPRSCount = noGPRSCount;
 	}
-
+	public UserEntity(Long id, String login, String password,String firstname,String lastname,int role,boolean isActive) {
+		super();
+		this.id = new LongPrimaryKey(id);
+		this.login = login;
+		this.password = password;
+		this.firstname=firstname;
+		this.lastname=lastname;
+		this.isActive = isActive;
+		this.role = UserRole.getUserRole(role);
+	}
+	
 	public UserEntity(String login, String password, Long ownerId, String firstname, String Lastname, Long groupId) {
 		super();
 		this.firstname=firstname;
