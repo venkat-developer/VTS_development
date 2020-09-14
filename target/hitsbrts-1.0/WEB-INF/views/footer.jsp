@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Front Page</title>
+    <title>Footer</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/normalize.css" />
   </head>
@@ -14,7 +14,7 @@
     <!-- Footer of the Google app html-->
     <br><br>   
     <div class="row" style="color:#1AB3BD;height:5%;text-align:center">
-      <p><strong>© Copyright at Harman</strong></p>
+      <p><strong>© Copyright at Sanvi Solution</strong></p>
     </div>
   </body>
 </html>

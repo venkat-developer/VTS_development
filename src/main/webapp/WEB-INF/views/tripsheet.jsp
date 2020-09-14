@@ -28,20 +28,76 @@
 				<div id="lastlogin"></div>
 				</nav>
 				<div id="navbar"></div>
-				<section class="main-section"> <!-- content goes here -->
 				<br>
 				<br>
-				<div class="large-9 push-1 columns">
-					<form action="/HITS-UI/addtipSheet.do">
-						Trip 			:<input type ="text" /> </input>
-						Referred by 	:<input type ="text" /> </input>
-						Type 			:<input type ="text" /> </input>
-						Party 			:<input type ="text" /> </input>
-						Person 			:<input type ="text" /> </input>
-						Address 		:<input type ="text" /> </input>					
-					</form>
-				</div>
-				</section>
+				<form action="/HITS-UI/addtipSheet.do">
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Trip Id : </span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" placeholder="Enter trip number...">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Referred by :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" placeholder="Enter Referred by name ">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Trip Type :</span>
+    </div>
+	<div class="large-6 columns">
+      <input type="text" placeholder="Enter trip type.">
+    </div>
+    <div class="large-2 small-offset-2 columns">
+     </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Passanger name :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" placeholder="Enter passanager name.">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Person :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" placeholder="Round trip/one way">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Address :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" placeholder="Round trip/one way">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+ </div>
+</div>
+  <div class="input-group-button">
+    <div class="large-6 small-offset-4 columns"><input type="submit" class="button" value="Submit">
+	<input type="reset" class="button" value="Clear"></div>
+  </div>
+</form>
 				<a class="exit-off-canvas"></a>
 			</div>
 		</div>
@@ -57,5 +113,7 @@
 	<script src="js/foundation.js"></script>
 	<script src="js/foundation.orbit.js"></script>
 	<script src="js/brts/main.js"></script>
+	<script src="/zurb-foundation3/foundation3/javascripts/jquery.min.js"></script>
+<script src="/zurb-foundation3/foundation3/javascripts/jquery.customforms.js"></script>
 </body>
 </html>

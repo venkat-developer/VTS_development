@@ -27,6 +27,7 @@
 				/main.* mainController
 				/live.* liveController
 				/tripSheet.* tripSheetController
+				/addtipSheet.* tripSheetController
 <!-- 				/reports.* reportsController -->
 			</value>
 		</property>

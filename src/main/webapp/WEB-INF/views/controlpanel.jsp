@@ -42,7 +42,7 @@
 					<!-- content goes here -->
 
 					<div class="large-11 columns" style="height: 92.5%">
-						<h1>Health Status History</h1>
+					<!-- 	<h1>Health Status History</h1>
 						<c:if test="${empty syncTime}">
 							<br>
 							<h1>No data is Available !!!</h1>
@@ -201,7 +201,7 @@
 
 				<a class="exit-off-canvas"></a>
 
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -218,13 +218,3 @@
 	<script src="js/brts/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
