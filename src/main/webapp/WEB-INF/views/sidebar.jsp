@@ -21,6 +21,13 @@
 			<li><a href="/HITS-UI/home.do">Home</a></li>
 			<li><a href="/HITS-UI/tripSheet.do">Trip sheet</a></li>
 			<li><label>Reports</label></li>
+			<li><label>Control Panel</label></li>
+				<li><a href="/HITS-UI/user.do">Customer</a></li>
+				<li><a href="/HITS-UI/vehicle.do">Vehicle</a></li>
+				<li><a href="/HITS-UI/driver.do">Driver</a></li>
+				<li><a href="/HITS-UI/agent.do">Agent</a></li>
+				<li><a href="/HITS-UI/agent.do">Agent</a></li>
+				
 <!-- 			<li><a href="/HITS-UI/divisionhome.do">Monthly</a></li> -->
 <!-- 			<li><a href="/HITS-UI/depothome.do">Idle</a></li> -->
 <!-- 			<li><a href="/HITS-UI/busdetailshome.do">Stastics</a></li> -->

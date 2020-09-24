@@ -51,7 +51,7 @@
 				<div class="th">
 					<div class="section-container tabs" data-section>
 						<h5 class="title">
-							<strong><center>Login Here</center></strong>
+							<strong><center>Register Here</center></strong>
 						</h5>
 						<div class="content" data-slug="panel1">
 							<h6 style="color: #de4c4c">* ${msg}</h6>
