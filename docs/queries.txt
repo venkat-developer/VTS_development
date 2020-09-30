@@ -1,10 +1,3 @@
-INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (3,'test','test','firstname','lastname','test@gmail.com','Bengalore',12345,2,true);
-INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (1,'super','super','superfirstname','superlastname','supertest@gmail.com','Bengalore',12345,0,true);
-INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (2,'admin','admin','adminfirst name','admin lastname','admin@gmail.com','Bengalore',678901,1,true);
-
-ALTER TABLE `spring_mvc`.`users` 
-CHANGE COLUMN `role` `userrole` INT NULL DEFAULT NULL ;
-
 INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,role,isactive) VALUES (1,'test','test','firstname','lastname','test@gmail.com','Bengalore',12345,1,true);
 
 INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,role,isactive) VALUES (2,'admin','admin','adminfirst name','admin lastname','admin@gmail.com','Bengalore',678901,2,true);
@@ -20,7 +13,7 @@ select * from users;
 INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (3,'test','test','firstname','lastname','test@gmail.com','Bengalore',12345,2,true);
 INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (1,'super','super','superfirstname','superlastname','supertest@gmail.com','Bengalore',12345,0,true);
 INSERT INTO users(id,username, password, firstname,lastname,email,address,phone,userrole,isactive) VALUES (2,'admin','admin','adminfirst name','admin lastname','admin@gmail.com','Bengalore',678901,1,true);
-vendor,user,vehicle,driver,TripSheet,vendorAgreement,passanager
+
 DROP TABLE IF EXISTS vehicle;
 CREATE TABLE vehicle(
 vehicle_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -64,21 +57,20 @@ vendor_id INT(6)
 )
 
 
-DROP TABLE IF EXISTS vendor
+
+DROP TABLE IF EXISTS passanger
 CREATE TABLE vendor(
 vendor_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 email VARCHAR(50),
 mobile_number INT(10),
-fax_number VARCHAR(50),
-website VARCHAR(30),
 address VARCHAR(50),
 user_id INT(6) NOT NULL,
 contact_person VARCHAR(30)
 )
 
-DROP TABLE IF EXISTS vendor_agreement
+DROP TABLE IF EXISTS 
 CREATE TABLE vendor_agreement(
 agreement_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 user_id INT(6) NOT NULL,
@@ -89,32 +81,21 @@ driver_beta DECIMAL(5,4 ),
 tax DECIMAL(5, 4)
 )
 
-DROP TABLE IF EXISTS users
-CREATE TABLE users(
-user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+DROP TABLE IF EXISTS travels
+CREATE TABLE users( travels_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 user_name VARCHAR(50) NOT NULL,
-user_password VARCHAR(50) NOT NULL,
-first_name VARCHAR(50) NOT NULL,
-last_name VARCHAR(50),
-user_role INT(6) NOT NULL,
+password VARCHAR(50) NOT NULL,
 travels_name VARCHAR(50) NOT NULL,
 email VARCHAR(50) NOT NULL,
 mobile_number INT(10) NOT NULL,
 address VARCHAR(50),
+user_id INT(6) NOT NULL,
 contact_person VARCHAR(30),
 subscription_type INT(6) NOT NULL,
 website VARCHAR(30),
-registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-isActive BOOLEAN NOT NULL DEFAULT false
+registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
-select * from users;
-insert into users(user_name,user_password,first_name,last_name,user_role,travels_name,email,mobile_number,address,contact_person,subscription_type,website,isActive)
- values ('venkat','venkat','super_first','super_last',0,'SANVI','venkat@gmail.com','91644','Bengaluru','poc',1,'test.com',true)
-insert into users(user_name,user_password,first_name,last_name,user_role,travels_name,email,mobile_number,address,contact_person,subscription_type,website,isActive)
- values ('admin','admin','admin_firstName','admin_lastName',1,'SANVI','admin@gmail.com','91644','Bengaluru','poc',1,'test.com',true)
- insert into users(user_name,user_password,first_name,last_name,user_role,travels_name,email,mobile_number,address,contact_person,subscription_type,website,isActive)
- values ('test','test','test','test',2,'SANVI','test@gmail.com','91644','Bengaluru','poc',1,'test.com',true)
- 
+
 DROP TABLE IF EXISTS subscription_type
 CREATE TABLE subscription_type(
 subscription_id INT(6) UNSIGNED NOT NULL,no_of_days INT(6) NOT NULL
@@ -122,7 +103,7 @@ subscription_id INT(6) UNSIGNED NOT NULL,no_of_days INT(6) NOT NULL
 
 DROP TABLE IF EXISTS trip_sheet
 CREATE TABLE trip_sheet(
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+trip_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 trip_sheet_number INT(10) UNSIGNED NOT NULL,
 vehicle_id INT(6) UNSIGNED NOT NULL,
 driver_id INT(6) UNSIGNED NOT NULL,
@@ -130,6 +111,7 @@ trip_type INT(6) UNSIGNED NOT NULL,
 ac_trip BOOLEAN NOT NULL,
 passanger_name VARCHAR(50) NOT NULL,
 refferedby VARCHAR(50),
+travels_id INT(6) NOT NULL,
 user_id INT(6) NOT NULL,
 trip_start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
 trip_end_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,

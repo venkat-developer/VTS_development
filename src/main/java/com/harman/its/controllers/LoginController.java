@@ -130,7 +130,7 @@ public class LoginController extends SimpleFormController {
 			userid = currentUser.getId();
 			logger.debug("Current logged in userId  "+userid);
 		}
-		String action = currentUser.getFirstname().toUpperCase() +""+ " HAS "+type.toUpperCase();
+		String action = currentUser.getFirstName().toUpperCase() +""+ " HAS "+type.toUpperCase();
 		LogsEntity logEntity = new LogsEntity(userid,currentdate,remoteip,action);
 		LogsDaoImpl log=new LogsDaoImpl();
 		// Insertion of user login information to the logs table

@@ -20,20 +20,16 @@
 			<li><label>Menu</label></li>
 			<li><a href="/HITS-UI/home.do">Home</a></li>
 			<li><a href="/HITS-UI/tripSheet.do">Trip sheet</a></li>
-			<li><label>Reports</label></li>
+<!-- 			<li><label>Reports</label></li> -->
 			<li><label>Control Panel</label></li>
 				<li><a href="/HITS-UI/user.do">Customer</a></li>
 				<li><a href="/HITS-UI/vehicle.do">Vehicle</a></li>
 				<li><a href="/HITS-UI/driver.do">Driver</a></li>
-				<li><a href="/HITS-UI/agent.do">Agent</a></li>
-				<li><a href="/HITS-UI/agent.do">Agent</a></li>
+				<li><a href="/HITS-UI/passenger.do">Passenger</a></li>
+				<li><a href="/HITS-UI/vendor.do">Vendor</a></li>
+				<li><a href="/HITS-UI/vendorAgreement.do">Vendor Agreement</a></li>
 				
-<!-- 			<li><a href="/HITS-UI/divisionhome.do">Monthly</a></li> -->
-<!-- 			<li><a href="/HITS-UI/depothome.do">Idle</a></li> -->
-<!-- 			<li><a href="/HITS-UI/busdetailshome.do">Stastics</a></li> -->
-<!-- 			<li><a href="/HITS-UI/driverhome.do">Driver</a></li> -->
-<!-- 			<li><a href="/HITS-UI/busStopshome.do">Activity</a></li> -->
-<!-- 			<li><a href="/HITS-UI/inputValidate.do">ControlPanel</a></li> -->
+
 		</ul>
 	</aside>
 

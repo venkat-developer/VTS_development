@@ -49,7 +49,7 @@ public class SessionUtils {
 	 * @param model
 	 */
 	public static void addUserDeatils(ModelAndView model) {
-		model.addObject("userName",SessionUtils.getCurrentlyLoggedInUser().getFirstname());
+		model.addObject("userName",SessionUtils.getCurrentlyLoggedInUser().getFirstName());
 		model.addObject("userRole",SessionUtils.getCurrentlyLoggedInUser().getRole());
 	}
 }

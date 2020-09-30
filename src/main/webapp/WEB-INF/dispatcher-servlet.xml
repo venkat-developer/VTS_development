@@ -25,10 +25,13 @@
 				/register.* registerController
 				/home.* homeController
 				/main.* mainController
-				/live.* liveController
 				/tripSheet.* tripSheetController
-				/addtipSheet.* tripSheetController
-<!-- 				/reports.* reportsController -->
+				/vehicle.* vehicleController
+				/user.* userController
+				/driver.* driverController
+				/passenger.* passengerController
+				/vendor.* vendorController 
+				/vendorAgreement.* VendorAgreementController
 			</value>
 		</property>
 	</bean>
@@ -74,10 +77,30 @@
 	
 	<bean name="homeController" class="com.harman.its.controllers.HomeController">
 	</bean>
-	<bean name="liveController" class="com.harman.its.controllers.LiveDatController">
+
+	<bean name="tripSheetController" class="com.harman.its.controllers.TripSheetController">
 		
 	</bean>
-	<bean name="tripSheetController" class="com.harman.its.controllers.TripSheetController">
+	<bean name="vehicleController" class="com.harman.its.controllers.VehicleController">
+		
+	</bean>
+	<bean name="driverController" class="com.harman.its.controllers.DriverController">
+		
+	</bean>
+	
+	<bean name="userController" class="com.harman.its.controllers.UserController">
+		
+	</bean>
+	
+	<bean name="passengerController" class="com.harman.its.controllers.PassengerController">
+		
+	</bean>
+	
+	<bean name="vendorController" class="com.harman.its.controllers.VendorController">
+		
+	</bean>
+	
+	<bean name="VendorAgreementController" class="com.harman.its.controllers.VendorAgreementController">
 		
 	</bean>
 	

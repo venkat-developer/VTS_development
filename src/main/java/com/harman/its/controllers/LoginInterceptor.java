@@ -14,7 +14,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.harman.its.entity.UserEntity;
-import com.harman.its.entity.UserEntity.UserRole;
 import com.harman.its.utils.SessionUtils;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {

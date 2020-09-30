@@ -14,6 +14,9 @@ CREATE TABLE users(
 user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 user_name VARCHAR(50) NOT NULL,
 user_password VARCHAR(50) NOT NULL,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50),
+user_role INT(6) NOT NULL,
 travels_name VARCHAR(50) NOT NULL,
 email VARCHAR(50) NOT NULL,
 mobile_number INT(10) NOT NULL,
@@ -24,6 +27,13 @@ website VARCHAR(30),
 registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 isActive BOOLEAN NOT NULL DEFAULT false
 )
+select * from users;
+insert into users(user_name,user_password,first_name,last_name,user_role,travels_name,email,mobile_number,address,contact_person,subscription_type,website,isActive)
+ values ('venkat','venkat','super_first','super_last',0,'SANVI','venkat@gmail.com','91644','Bengaluru','poc',1,'test.com',true)
+insert into users(user_name,user_password,first_name,last_name,user_role,travels_name,email,mobile_number,address,contact_person,subscription_type,website,isActive)
+ values ('admin','admin','admin_firstName','admin_lastName',1,'SANVI','admin@gmail.com','91644','Bengaluru','poc',1,'test.com',true)
+ insert into users(user_name,user_password,first_name,last_name,user_role,travels_name,email,mobile_number,address,contact_person,subscription_type,website,isActive)
+ values ('test','test','test','test',2,'SANVI','test@gmail.com','91644','Bengaluru','poc',1,'test.com',true)
  *
  */
 public class UserEntity implements IEntity<UserEntity>{
@@ -31,6 +41,10 @@ public class UserEntity implements IEntity<UserEntity>{
 	private LongPrimaryKey userId;
 	
 	private String userName;
+	
+	private String firstName;
+	
+	private String lastName;
 	
 	private String password;
 	
@@ -55,11 +69,13 @@ public class UserEntity implements IEntity<UserEntity>{
 	private Date registrationDate;
 
 	
-	public UserEntity(Long id, String userName, String password,int userRole,boolean isActive,String companyName, 
+	public UserEntity(Long id, String userName,String password, String firstName,String lastName,int userRole,boolean isActive,String companyName, 
 			String email,String mobileNumber,String address,String contactPerson,int subscriptionType,String website,Date registrationDate) {
 		this.userId = new LongPrimaryKey(id);
 		this.userName = userName;
 		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.isActive = isActive;
 		this.companyName = companyName;
 		this.userRole = UserRole.getUserRole(userRole);
@@ -260,5 +276,33 @@ public class UserEntity implements IEntity<UserEntity>{
 	 */
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,9 +45,8 @@ import com.harman.its.utils.DateUtils;
  */
 public class LogsDaoImpl implements ILogsDao{
 	Logger logger = Logger.getLogger(getClass());
-
-	@Override
-	public LogsEntity insert(LogsEntity entity)throws ClassNotFoundException, SQLException{
+	
+	public LogsEntity insert(LogsEntity entity) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		Statement statement = null;
 		try {
@@ -97,29 +97,6 @@ public class LogsDaoImpl implements ILogsDao{
 
 		}
 	}
-
-	@Override
-	public int update(LogsEntity entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public LogsEntity delete(LogsEntity entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<LogsEntity> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void archiveData() {
-		// TODO Auto-generated method stub
-	}
 	public List<LogsEntity> selectLastLogin(long userId){
 		List<LogsEntity> logsList = new ArrayList<LogsEntity>();
 		Connection connection = null;
@@ -169,4 +146,21 @@ public class LogsDaoImpl implements ILogsDao{
 
 		return logsList;
 	}
+	public int update(LogsEntity entity) throws ClassNotFoundException, SQLException, ParseException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public LogsEntity delete(LogsEntity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public List<LogsEntity> selectAll() throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void archiveData() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
