@@ -30,46 +30,48 @@
 				<div id="navbar"></div>
 				<br>
 				<br>
-				<form action="/HITS-UI/vehicle.do"> 
-				<!-- <form action="tripsheet-1.jsp"> -->
+				<form action="/HITS-UI/vehicle.do" method="post"> 
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Id : </span>
+      <span class="prefix">Registration No : </span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter trip number...">
+      <input type="text" name="registrationNo" placeholder="Eg : KAO1AA0000">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Passanger name :</span>
+      <span class="prefix">Vehicle Make :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter passanager name.">
+      <input type="text"  name="vehicleMake" placeholder="Eg : KIA">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Referred by :</span>
+      <span class="prefix">Vehicle Model :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter Referred by name ">
+      <input type="text"  name="vehicleModel" placeholder="Eg : Carnival">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Type :</span>
+      <span class="prefix">Vehcile Type :</span>
     </div>
     <div class="large-6 columns">
-      <select>
-            <option value="local">Local</option>
-            <option value="OutStation">OutStation</option>
+      <select name="vehicleType">
+            <option value="1">Sedan</option>
+            <option value="2">SUV</option>
+			<option value="3">Hatchback</option>
+			<option value="4">Mini Van</option>
+			<option value="5">Bus</option>
          </select>
     </div>
 	<div class="large-3 columns"></div>
@@ -84,47 +86,12 @@
 	<div class="large-3 columns"></div>
   </div>
   
-  <div class="row collapse">
+   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Select vehicle Type :</span>
+      <span class="prefix">Insurance valid up to :</span>
     </div>
     <div class="large-6 columns">
-      <select>
-			<option value = "">Select Vehicle type</option>
-            <option value = "Sedan">Sedan</option>
-            <option value = "SUV">SUV</option>
-            <option value = "Mini van">Mini Van</option>
-            <option value = "Bus">Bus</option>
-         </select>
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-		&nbsp;
-	</div>
-    <div class="large-6 columns">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Vehicle No  :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Eg : KA00AA0001">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Driver Name :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Driver Name">
+      <input type="text" name="insurance" placeholder="Insurance validity date">
     </div>
 	<div class="large-3 columns"></div>
   </div>
@@ -146,8 +113,8 @@
     
 	<div class="large-6 columns">
       	<span>
-		<input type="radio" name="ac" value="Ac" id="ac" required>AC</input>
-		<input type="radio" name="ac" value="Non AC" id="nonac">Non-AC</input>
+		<input type="radio" name="ac" value="true" id="ac" required>AC</input>
+		<input type="radio" name="ac" value="false" id="nonac">Non-AC</input>
 		</span>
     </div>
 	<div class="large-3 columns"></div>

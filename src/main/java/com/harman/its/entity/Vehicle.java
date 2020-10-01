@@ -19,14 +19,15 @@ vehicle_type INT NOT NULL,
 vehicleMake VARCHAR(50),
 vehicleModel VARCHAR(50),
 vehicleModelYear VARCHAR(50),
-insurance_validity TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+isACVehicle BOOLEAN NOT NULL DEFAULT true,
+insurance_validity DATE DEFAULT (CURRENT_DATE + INTERVAL 1 YEAR)
 )
 */
 public class Vehicle implements IEntity<Vehicle> {
 
 	private LongPrimaryKey vehicleId;
 	
-	private int userId;
+	private long userId;
 	
 	private String registrationNo;
 	
@@ -35,18 +36,29 @@ public class Vehicle implements IEntity<Vehicle> {
 	private String vehicleModel;
 	
 	private String vehicleModelYear;
+	/**
+	 * Sedan,SUV,Bus ..
+	 */
+	private int vehicleType;
 	
 	private Date insuranceValidTill;
 	
-	public Vehicle(LongPrimaryKey vehcielId,int userId,String registrationNo,String vehicleMake,
-				String vehicleModel,String vehicleModelYear,Date insuranceValidTill) {
+	private boolean isACVehicle;
+	
+	public Vehicle() {
+		
+	}
+	public Vehicle(LongPrimaryKey vehcielId,long userId,String registrationNo,String vehicleMake,
+				String vehicleModel,String vehicleModelYear,int vehicleType,Date insuranceValidTill,boolean isACVehicle) {
 		this.vehicleId = vehcielId;
 		this.userId = userId;
 		this.registrationNo = registrationNo;
 		this.vehicleMake = vehicleMake;
 		this.vehicleModel = vehicleModel;
 		this.vehicleModelYear = vehicleModelYear ;
+		this.vehicleType = vehicleType;
 		this.insuranceValidTill = insuranceValidTill;
+		this.isACVehicle = isACVehicle;
 	}
 	public LongPrimaryKey getVehcielId() {
 		return vehicleId;
@@ -56,11 +68,11 @@ public class Vehicle implements IEntity<Vehicle> {
 		this.vehicleId = vehcielId;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
@@ -107,5 +119,29 @@ public class Vehicle implements IEntity<Vehicle> {
 
 	public boolean equalsEntity(Vehicle object) {
 		return false;
+	}
+	/**
+	 * @return the vehicleType
+	 */
+	public int getVehicleType() {
+		return vehicleType;
+	}
+	/**
+	 * @param vehicleType the vehicleType to set
+	 */
+	public void setVehicleType(int vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+	/**
+	 * @return the isACVehicle
+	 */
+	public boolean isACVehicle() {
+		return isACVehicle;
+	}
+	/**
+	 * @param isACVehicle the isACVehicle to set
+	 */
+	public void setACVehicle(boolean isACVehicle) {
+		this.isACVehicle = isACVehicle;
 	}
 }
