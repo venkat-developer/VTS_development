@@ -23,7 +23,7 @@ public class Passenger implements IEntity<Passenger> {
 
 	private LongPrimaryKey passengerId;
 	
-	private int userId;
+	private long userId;
 	
 	private String firstName;
 	
@@ -38,8 +38,11 @@ public class Passenger implements IEntity<Passenger> {
 	private int passengerType;
 	
 	private long vendorId;
-
-	public Passenger(LongPrimaryKey passengerId,int userId,String firstName,String lastName,
+	
+	public Passenger() {
+		
+	}
+	public Passenger(LongPrimaryKey passengerId,long userId,String firstName,String lastName,
 				String email,String mobile,String address,int passengerType,long vendorId) {
 		this.passengerId = passengerId;
 		this.userId = userId;
@@ -87,14 +90,14 @@ public class Passenger implements IEntity<Passenger> {
 	/**
 	 * @return the userId
 	 */
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

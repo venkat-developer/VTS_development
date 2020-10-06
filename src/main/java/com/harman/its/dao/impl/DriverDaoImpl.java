@@ -8,9 +8,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.harman.its.dao.idao.IVehicleDao;
-import com.harman.its.entity.UserEntity;
-import com.harman.its.entity.Vehicle;
+import com.harman.its.dao.idao.IDriverDao;
+import com.harman.its.entity.Driver;
 import com.harman.its.utils.DataBaseConnection;
 
 /**
@@ -18,29 +17,11 @@ import com.harman.its.utils.DataBaseConnection;
  * @author VAmukapati
  *
  */
-public class VehicleDaoImpl implements IVehicleDao {
+public class DriverDaoImpl implements IDriverDao {
 	Logger logger = Logger.getLogger(getClass());
 
-	public int update(UserEntity entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public Driver insert(Driver driverEntity) throws SQLException, ClassNotFoundException, ParseException {
 
-	public UserEntity delete(UserEntity entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<Vehicle> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void archiveData() {
-		// TODO Auto-generated method stub
-	}
-
-	public Vehicle insert(Vehicle vehicleEntity) throws SQLException, ClassNotFoundException, ParseException {
 		// TODO Auto-generated method stub
 		Connection connection = null;
 		Statement statement = null;
@@ -56,22 +37,19 @@ public class VehicleDaoImpl implements IVehicleDao {
 			}
 			statement = connection.createStatement();
 			StringBuilder query = new StringBuilder();
-			query.append("insert into vehicle(registration_num,vehicle_type,user_id,vehicleMake,vehicleModel,isACVehicle,insurance_validity) ");
-			query.append("values ('");
-			query.append(vehicleEntity.getRegistrationNo());
-			query.append("',");
-			query.append(vehicleEntity.getVehicleType());
-			query.append(",");
-			query.append(vehicleEntity.getUserId());
+			query.append("insert into driver(user_id,firstname,lastname,licence_number,email,mobile_number) ");
+			query.append("values (");
+			query.append(driverEntity.getUserId());
 			query.append(",'");
-			query.append(vehicleEntity.getVehicleMake());
+			query.append(driverEntity.getFirstName());
 			query.append("','");
-			query.append(vehicleEntity.getVehicleModel());
-			query.append("',");
-			query.append(vehicleEntity.isACVehicle());
-			query.append(",'");
-			java.util.Date date=new java.util.Date();
-			query.append(new java.sql.Date(date.getTime()));
+			query.append(driverEntity.getLastName());
+			query.append("','");
+			query.append(driverEntity.getLicenseNo());
+			query.append("','");
+			query.append(driverEntity.getEmail());
+			query.append("','");
+			query.append(driverEntity.getMobileNumber());
 			query.append("')");
 			System.out.println("Query is >> "+query.toString());
 			statement.executeUpdate(query.toString());
@@ -95,17 +73,27 @@ public class VehicleDaoImpl implements IVehicleDao {
 				}
 			}
 		}
-		return vehicleEntity;
+		return driverEntity;
+	
 	}
 
-	public int update(Vehicle entity) throws ClassNotFoundException, SQLException, ParseException {
+	public int update(Driver entity) throws ClassNotFoundException, SQLException, ParseException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public Vehicle delete(Vehicle entity) {
+	public Driver delete(Driver entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	public List<Driver> selectAll() throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void archiveData() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }

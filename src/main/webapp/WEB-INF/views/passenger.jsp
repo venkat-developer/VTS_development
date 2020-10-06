@@ -30,52 +30,26 @@
 				<div id="navbar"></div>
 				<br>
 				<br>
-				<form action="/HITS-UI/passenger.do"> 
+				<form action="/HITS-UI/passenger.do" method="POST"> 
 				<!-- <form action="tripsheet-1.jsp"> -->
-  <div class="row collapse">
+    <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Id : </span>
+      <span class="prefix">Select Title :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter trip number...">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Passanger name :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Enter passanager name.">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Referred by :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Enter Referred by name ">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Type :</span>
-    </div>
-    <div class="large-6 columns">
-      <select>
-            <option value="local">Local</option>
-            <option value="OutStation">OutStation</option>
+      <select name="paxTitle">
+			<option value = "">Select title</option>
+            <option value = "Mr.">Mr.</option>
+            <option value = "Mrs.">Mrs.</option>
+            <option value = "Ms.">Ms.</option>
+            <option value = "Miss.">Miss.</option>
+            <option value = "Dr.">Dr.</option>
+            <option value = "Master.">Master.</option>
          </select>
     </div>
 	<div class="large-3 columns"></div>
   </div>
-  
-  <div class="row collapse">
+    <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
 		&nbsp;
 	</div>
@@ -83,72 +57,75 @@
     </div>
 	<div class="large-3 columns"></div>
   </div>
-  
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Select vehicle Type :</span>
+      <span class="prefix">First Name : </span>
     </div>
     <div class="large-6 columns">
-      <select>
-			<option value = "">Select Vehicle type</option>
-            <option value = "Sedan">Sedan</option>
-            <option value = "SUV">SUV</option>
-            <option value = "Mini van">Mini Van</option>
-            <option value = "Bus">Bus</option>
-         </select>
+      <input type="text" name="paxFirstName" placeholder="Enter first name.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-		&nbsp;
-	</div>
-    <div class="large-6 columns">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Vehicle No  :</span>
+      <span class="prefix">Last name :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Eg : KA00AA0001">
+      <input type="text" name="paxLastName" placeholder="Enter last name.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Driver Name :</span>
+      <span class="prefix">Email :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Driver Name">
+      <input type="text" name="paxEmail" placeholder="Email">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-	<br>
-	</div>
-  <div class="large-6 columns">
-    <br>
+      <span class="prefix">Mobile/Phone number :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" name ="paxMobileNumber" placeholder="Mobile number">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
-  <div class="row collapse">
+   <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Address :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" name ="address" placeholder="Address">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
 	&nbsp;
 	</div>
     
 	<div class="large-6 columns">
       	<span>
-		<input type="radio" name="ac" value="Ac" id="ac" required>AC</input>
-		<input type="radio" name="ac" value="Non AC" id="nonac">Non-AC</input>
+		<input type="radio" name="passengerType" value="0" id="personal" required>Personal</input>
+		<input type="radio" name="passengerType" value="1" id="official">Official</input>
 		</span>
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+	<br>
+	</div>
+  <div class="large-6 columns">
+    <br>
     </div>
 	<div class="large-3 columns"></div>
   </div>

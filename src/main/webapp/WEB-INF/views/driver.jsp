@@ -34,97 +34,50 @@
 				<!-- <form action="tripsheet-1.jsp"> -->
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Id : </span>
+      <span class="prefix">First Name : </span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter trip number...">
+      <input type="text" name="driverFirstName" placeholder="Enter First name">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Passanger name :</span>
+      <span class="prefix">Last Name :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter passanager name.">
+      <input type="text" name="driverLastName" placeholder="Enter last name.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Referred by :</span>
+      <span class="prefix">Licence No : </span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter Referred by name ">
+      <input type="text" name="licenceNo" placeholder="Licence No">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Type :</span>
+      <span class="prefix">Mobile No  :</span>
     </div>
     <div class="large-6 columns">
-      <select>
-            <option value="local">Local</option>
-            <option value="OutStation">OutStation</option>
-         </select>
+      <input type="text" name="driverMobileNo" placeholder="Eg : 9000000000">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-		&nbsp;
-	</div>
-    <div class="large-6 columns">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Select vehicle Type :</span>
+      <span class="prefix">Email :</span>
     </div>
     <div class="large-6 columns">
-      <select>
-			<option value = "">Select Vehicle type</option>
-            <option value = "Sedan">Sedan</option>
-            <option value = "SUV">SUV</option>
-            <option value = "Mini van">Mini Van</option>
-            <option value = "Bus">Bus</option>
-         </select>
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-		&nbsp;
-	</div>
-    <div class="large-6 columns">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Vehicle No  :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Eg : KA00AA0001">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Driver Name :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Driver Name">
+      <input type="text"  name="driverEmail" placeholder="Driver Email">
     </div>
 	<div class="large-3 columns"></div>
   </div>
@@ -139,19 +92,6 @@
 	<div class="large-3 columns"></div>
   </div>
   
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-	&nbsp;
-	</div>
-    
-	<div class="large-6 columns">
-      	<span>
-		<input type="radio" name="ac" value="Ac" id="ac" required>AC</input>
-		<input type="radio" name="ac" value="Non AC" id="nonac">Non-AC</input>
-		</span>
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
   
  </div>
 </div>

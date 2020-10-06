@@ -10,7 +10,7 @@ user_id INT(6) NOT NULL,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 email VARCHAR(50),
-mobile_number INT(10),
+mobile_number VARCHAR(10),
 licence_number VARCHAR(30) NOT NULL
 )
  * @author VAmukapati
@@ -20,7 +20,7 @@ public class Driver implements IEntity<Driver> {
 	
 	private LongPrimaryKey driverId;
 	
-	private int userId;
+	private long userId;
 	
 	private String firstName;
 	
@@ -31,8 +31,10 @@ public class Driver implements IEntity<Driver> {
 	private String mobileNumber;
 	
 	private String email;
-	
-	public Driver(LongPrimaryKey driverId,int userId,String firstName,String lastName,String licenseNo,String mobileNumber,String email) {
+	public Driver() {
+		
+	}
+	public Driver(LongPrimaryKey driverId,long userId,String firstName,String lastName,String licenseNo,String mobileNumber,String email) {
 		this.driverId = driverId;
 		this.userId = userId;
 		this.firstName = firstName;
@@ -49,11 +51,11 @@ public class Driver implements IEntity<Driver> {
 		this.driverId = driverId;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
