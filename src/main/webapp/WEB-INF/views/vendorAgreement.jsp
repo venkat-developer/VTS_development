@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tavel management</title>
+<title>Tavel management | Agreement</title>
 
 <link rel="stylesheet" href="css/foundation.css" />
 <link rel="stylesheet" href="css/normalize.css" />
@@ -32,32 +35,77 @@
 				<br>
 				<form action="/HITS-UI/vendorAgreement.do"> 
 				<!-- <form action="tripsheet-1.jsp"> -->
+  
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Id : </span>
+      <span class="prefix">Select Vednor :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter trip number...">
+      <select name="vendorName">
+			<option value = "">Select Vehicle type</option>
+            <c:forEach items='${vendorList}' var='vendor'>
+			<option value = "${vendor.vendorId}">${vendor.firstName}</option>
+			</c:forEach>
+       </select>
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Passanger name :</span>
-    </div>
+		&nbsp;
+	</div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter passanager name.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Referred by :</span>
+      <span class="prefix">Local with AC :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter Referred by name ">
+      <input type="text" name="localAC" placeholder="Enter per KM price eg : 10.50">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Local with Non-AC :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" name="localNonAC" placeholder="Enter per KM price eg : 10.50">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Out Station with AC :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" name="outAC" placeholder="Enter per KM price eg : 10.50">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Out Station with Non-AC :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" name="outNonAC" placeholder="Enter per KM price eg : 10.50">
+    </div>
+	<div class="large-3 columns"></div>
+  </div>
+  
+  <div class="row collapse">
+    <div class="large-2 small-offset-2 columns">
+      <span class="prefix">Driver Beta by :</span>
+    </div>
+    <div class="large-6 columns">
+      <input type="text" name="driverBeta" placeholder="Per day">
     </div>
 	<div class="large-3 columns"></div>
   </div>
@@ -107,52 +155,7 @@
     <div class="large-6 columns">
     </div>
 	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Vehicle No  :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Eg : KA00AA0001">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Driver Name :</span>
-    </div>
-    <div class="large-6 columns">
-      <input type="text" placeholder="Driver Name">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-	<br>
-	</div>
-  <div class="large-6 columns">
-    <br>
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-	&nbsp;
-	</div>
-    
-	<div class="large-6 columns">
-      	<span>
-		<input type="radio" name="ac" value="Ac" id="ac" required>AC</input>
-		<input type="radio" name="ac" value="Non AC" id="nonac">Non-AC</input>
-		</span>
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
+  </div>  
  </div>
 </div>
   <div class="input-group-button">

@@ -14,7 +14,7 @@ vendor_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 email VARCHAR(50),
-mobile_number INT(10),
+mobile_number VARCHAR(15),
 fax_number VARCHAR(50),
 website VARCHAR(30),
 address VARCHAR(50),
@@ -26,7 +26,7 @@ public class Vendor implements IEntity<Vendor> {
 
 	private LongPrimaryKey vendorId;
 	
-	private int userId;
+	private long userId;
 	
 	private String firstName;
 	
@@ -43,8 +43,11 @@ public class Vendor implements IEntity<Vendor> {
 	private String address;
 	
 	private String contactPerson;
-
-	public Vendor(LongPrimaryKey vendorId,int userId,String firstName,String lastName,String email,String website,
+	
+	public Vendor() {
+		
+	}
+	public Vendor(LongPrimaryKey vendorId,long userId,String firstName,String lastName,String email,String website,
 			String mobileNumber,String faxNumber,String address,String contactPerson) {
 		this.vendorId = vendorId;
 		this.userId = userId;
@@ -80,14 +83,14 @@ public class Vendor implements IEntity<Vendor> {
 	/**
 	 * @return the userId
 	 */
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

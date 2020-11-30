@@ -1,14 +1,17 @@
 package com.harman.its.dao.impl;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.harman.its.dao.idao.IPassangerDao;
+import com.harman.its.entity.LongPrimaryKey;
 import com.harman.its.entity.Passenger;
 import com.harman.its.utils.DataBaseConnection;
 
@@ -99,6 +102,59 @@ public class PassangerDaoImpl implements IPassangerDao {
 	public void archiveData() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<Passenger> selectAllByUserID(long userId) throws SQLException, ClassNotFoundException, ParseException {
+
+
+		Connection connection = null;
+		Statement statement = null;
+		List<Passenger> passangerEntityList = new ArrayList<Passenger>();
+		try {
+			try {
+				connection = DataBaseConnection.getInstance().getConnection();
+			} catch (ClassNotFoundException e) {
+				logger.error("", e);
+			}
+			if (connection == null) {
+				logger.error("DB Connection is Null");
+				throw new SQLException("DB Connection Null");
+			}
+			statement = connection.createStatement();
+			StringBuilder query = new StringBuilder();
+			query.append("select * from passenger where user_id=" + userId);
+			System.out.println("Query is >> " + query.toString());
+			ResultSet rs = statement.executeQuery(query.toString());
+			while (rs.next()) {
+				Passenger passanger = new Passenger(new LongPrimaryKey(rs.getLong("passanger_id")), rs.getLong("user_id"),
+						rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"),
+						rs.getString("mobile_number"), rs.getString("address"),rs.getInt("passanger_type"),rs.getInt("vendor_id"));
+				passangerEntityList.add(passanger);
+			}
+		} catch (SQLException e) {
+			logger.error("" + e);
+			throw new SQLException(e);
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					throw new SQLException(e);
+				}
+			}
+			if (connection != null) {
+				try {
+					DataBaseConnection.getInstance().closeConnection(connection);
+				} catch (SQLException e) {
+					logger.error("", e);
+					throw new SQLException(e);
+				}
+			}
+		}
+		return passangerEntityList;
+
+	
+	
 	}
 
 	

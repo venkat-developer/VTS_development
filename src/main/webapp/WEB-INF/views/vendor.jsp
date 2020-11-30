@@ -30,18 +30,18 @@
 				<div id="navbar"></div>
 				<br>
 				<br>
-				<form action="/HITS-UI/vendor.do"> 
+				<form action="/HITS-UI/vendor.do" method="POST"> 
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Id : </span>
+      <span class="prefix">Company/Vendor Name : </span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter trip number...">
+      <input type="text" name="vendorName" placeholder="Enter name">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
-  <div class="row collapse">
+  <!--  <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
       <span class="prefix">Passanger name :</span>
     </div>
@@ -49,105 +49,54 @@
       <input type="text" placeholder="Enter passanager name.">
     </div>
 	<div class="large-3 columns"></div>
-  </div>
+  </div>-->
   
-  <div class="row collapse">
+   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Referred by :</span>
+      <span class="prefix">Address :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Enter Referred by name ">
+      <input type="text" name="vendorAddress" placeholder="Enter address.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
-  <div class="row collapse">
+   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Trip Type :</span>
+      <span class="prefix">Website :</span>
     </div>
     <div class="large-6 columns">
-      <select>
-            <option value="local">Local</option>
-            <option value="OutStation">OutStation</option>
-         </select>
+      <input type="text" name="vendorWebsite" placeholder="Enter bolg.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-		&nbsp;
-	</div>
-    <div class="large-6 columns">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Select vehicle Type :</span>
+      <span class="prefix">Email :</span>
     </div>
     <div class="large-6 columns">
-      <select>
-			<option value = "">Select Vehicle type</option>
-            <option value = "Sedan">Sedan</option>
-            <option value = "SUV">SUV</option>
-            <option value = "Mini van">Mini Van</option>
-            <option value = "Bus">Bus</option>
-         </select>
+      <input type="text" name="vendorEmail" placeholder="Enter email id.">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-		&nbsp;
-	</div>
-    <div class="large-6 columns">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Vehicle No  :</span>
+      <span class="prefix">Phone :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Eg : KA00AA0001">
+      <input type="text"  name="vendorPhone" placeholder="Phone/Mobile number">
     </div>
 	<div class="large-3 columns"></div>
   </div>
   
   <div class="row collapse">
     <div class="large-2 small-offset-2 columns">
-      <span class="prefix">Driver Name :</span>
+      <span class="prefix">Fax :</span>
     </div>
     <div class="large-6 columns">
-      <input type="text" placeholder="Driver Name">
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-	<br>
-	</div>
-  <div class="large-6 columns">
-    <br>
-    </div>
-	<div class="large-3 columns"></div>
-  </div>
-  
-  <div class="row collapse">
-    <div class="large-2 small-offset-2 columns">
-	&nbsp;
-	</div>
-    
-	<div class="large-6 columns">
-      	<span>
-		<input type="radio" name="ac" value="Ac" id="ac" required>AC</input>
-		<input type="radio" name="ac" value="Non AC" id="nonac">Non-AC</input>
-		</span>
+      <input type="text"  name="vendorFax" placeholder="Fax number">
     </div>
 	<div class="large-3 columns"></div>
   </div>
